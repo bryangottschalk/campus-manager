@@ -27,6 +27,7 @@ const adapter = new Adapter();
 enzyme.configure({ adapter });
 
 import { AllCampuses } from '../../app/components/AllCampuses';
+import AllStudents from '../../app/components/AllStudents';
 
 describe('Tier One: Campuses', () => {
   describe('<AllCampuses /> component', () => {
@@ -140,7 +141,7 @@ describe('Tier One: Campuses', () => {
       Campus.findAll = campusFindAll;
     });
 
-    xit('GET /api/campuses responds with all campuses', async () => {
+    it('GET /api/campuses responds with all campuses', async () => {
       const response = await agent.get('/api/campuses').expect(200);
       expect(response.body).to.deep.equal([
         { id: 1, name: 'Mars Academy', imageUrl: '/images/mars.png' },
@@ -154,7 +155,7 @@ describe('Tier One: Campuses', () => {
     before(() => db.sync({ force: true }));
     afterEach(() => db.sync({ force: true }));
 
-    xit('has fields name, address, imageUrl, description', () => {
+    it('has fields name, address, imageUrl, description', () => {
       const campus = Campus.build({
         name: 'Jupiter Jumpstart',
         address: '5.2 AU',
@@ -170,11 +171,18 @@ describe('Tier One: Campuses', () => {
       );
     });
 
-    xit('*** requires name and address', async () => {
-      throw new Error('replace this error with your own test');
+    it('*** requires name and address', async () => {
+      const campus = Campus.build();
+      try {
+        await campus.validate();
+        throw Error('validation should have failed without name and address');
+      } catch (err) {
+        expect(err.message).to.contain('name cannot be null');
+        expect(err.message).to.contain('address cannot be null');
+      }
     });
 
-    xit('name and address cannot be empty', async () => {
+    it('name and address cannot be empty', async () => {
       const campus = Campus.build({ name: '', address: '' });
       try {
         await campus.validate();
@@ -187,7 +195,7 @@ describe('Tier One: Campuses', () => {
       }
     });
 
-    xit('default imageUrl if left blank', async () => {
+    it('default imageUrl if left blank', async () => {
       const campus = Campus.build({
         name: 'Jupiter Jumpstart',
         address: '5.2 AU',
