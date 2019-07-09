@@ -74,14 +74,14 @@ describe('Tier One: Campuses', () => {
         { id: 2, name: 'Jupiter Jumpstart', imageUrl: '/images/jupiter.jpeg' },
       ];
 
-      xit('setCampuses action creator', () => {
+      it('setCampuses action creator', () => {
         expect(setCampuses(campuses)).to.deep.equal({
           type: 'SET_CAMPUSES',
           campuses,
         });
       });
 
-      xit('fetchCampuses thunk creator', async () => {
+      it('fetchCampuses thunk creator', async () => {
         mockAxios.onGet('/api/campuses').replyOnce(200, campuses);
         await fakeStore.dispatch(fetchCampuses());
         const actions = fakeStore.getActions();
@@ -100,7 +100,7 @@ describe('Tier One: Campuses', () => {
         throw new Error('replace this error with your own test');
       });
 
-      xit('reduces on SET_CAMPUSES action', () => {
+      it('reduces on SET_CAMPUSES action', () => {
         const campuses = [
           {
             id: 1,

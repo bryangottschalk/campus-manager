@@ -62,14 +62,14 @@ describe('Tier One: Students', () => {
         { id: 2, firstName: 'Sally', lastName: 'Ride' },
       ];
 
-      xit('setStudents action creator', () => {
+      it('setStudents action creator', () => {
         expect(setStudents(students)).to.deep.equal({
           type: 'SET_STUDENTS',
           students,
         });
       });
 
-      xit('fetchStudents thunk creator', async () => {
+      it('fetchStudents thunk creator', async () => {
         mockAxios.onGet('/api/students').replyOnce(200, students);
         await fakeStore.dispatch(fetchStudents());
         const actions = fakeStore.getActions();
@@ -85,10 +85,11 @@ describe('Tier One: Students', () => {
       });
 
       xit('*** returns the initial state by default', () => {
-        throw new Error('replace this error with your own test');
+        // throw new Error('replace this error with your own test');
+        expect(testStore.dispatch(undefined)).to.equal([]);
       });
 
-      xit('reduces on SET_STUDENTS action', () => {
+      it('reduces on SET_STUDENTS action', () => {
         const students = [
           { id: 1, firstName: 'Mae', lastName: 'Jemison' },
           { id: 2, firstName: 'Sally', lastName: 'Ride' },
@@ -98,7 +99,6 @@ describe('Tier One: Students', () => {
         const prevState = testStore.getState();
         testStore.dispatch(action);
         const newState = testStore.getState();
-
         expect(newState.students).to.be.deep.equal(students);
         expect(newState.students).to.not.be.equal(prevState.students);
       });
