@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import AllCampuses from './AllCampuses';
 
 class Root extends React.Component {
   componentDidMount() {
@@ -7,16 +8,14 @@ class Root extends React.Component {
   render() {
     return (
       <div>
-        <nav>
-          Welcome!
-        </nav>
+        <nav>Welcome!</nav>
         <main>
           <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
           <p>This seems like a nice place to get started with some Routes!</p>
         </main>
       </div>
-    )
+    );
   }
 }
 
-export default Root
+export default Root;
