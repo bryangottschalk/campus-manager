@@ -8,8 +8,8 @@ The requirements below are broken into separate **tiers**, which model the way w
 
 #### Frontend
 
-- [ ] Write a campuses sub-reducer to manage campuses in your Redux store
-- [ ] Write a students sub-reducer to manage students in your Redux store
+- ['x'] Write a campuses sub-reducer to manage campuses in your Redux store
+- ['x'] Write a students sub-reducer to manage students in your Redux store
 - [ ] Write a component to display a list of all campuses (at least their names and images)
 - [ ] Write a component to display a list of all students (at least their names)
 - [ ] Display the all-campuses component when the url matches `/campuses`

@@ -31,7 +31,7 @@ import AllStudents from '../../app/components/AllStudents';
 
 describe('Tier One: Campuses', () => {
   describe('<AllCampuses /> component', () => {
-    xit('renders the campuses passed in as props', () => {
+    it('renders the campuses passed in as props', () => {
       const wrapper = shallow(
         <AllCampuses
           campuses={[
