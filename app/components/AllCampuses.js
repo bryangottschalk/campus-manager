@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCampuses } from '../redux/campuses';
-import { Campus } from './Campus';
+import Campus from './Campus';
 
 export const AllCampuses = props => {
   // props.campuses = props.loadCampuses();

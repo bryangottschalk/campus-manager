@@ -16,21 +16,22 @@ const campuses = [
   {
     name: 'gracehopper',
     address: '34',
-    imageUrl: 'https://www.fullstackacademy.com/images/fa-logo@2x.png',
+    imageUrl: 'https://www.gracehopper.com/images/gh-logo-sm-w-h_1.svg',
     description:
       'The Grace Hopper Program at Fullstack Academy is an immersive software engineering course for women with no upfront tuition cost.',
   },
   {
     name: 'flatiron',
     address: '56',
-    imageUrl: 'https://www.fullstackacademy.com/images/fa-logo@2x.png',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/61/FS_wiki.png',
     description:
       'Flatiron School is an educational organization founded in 2012 by Adam Enbar and Avi Flombaum. The organization is based in New York City and teaches software engineering, computer programming, data science, and UX/UI design.',
   },
   {
     name: 'hack reactor',
     address: '78',
-    imageUrl: 'https://www.fullstackacademy.com/images/fa-logo@2x.png',
+    imageUrl:
+      'https://s3.amazonaws.com/bloc-global-assets/almanac-assets/bootcamps/logos/000/002/730/original/Hack-Reactor.png?1467187370',
     description:
       'Hack Reactor is a software engineering Coding Bootcamp education program founded in San Francisco by Anthony Phillips, Shawn Drost, Marcus Phillips, and Douglas Calhoun in 2012.',
   },

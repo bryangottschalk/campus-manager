@@ -31,3 +31,13 @@ main {
   flex-direction: column;
   justify-content: center;
 }
+
+/* Campuses */
+
+.campuses {
+  list-style: none;
+}
+
+.campusLogos {
+  width: 300px;
+}

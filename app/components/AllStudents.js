@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Student from './Student';
 
 export const AllStudents = props => {
   // console.log('STUDENT PROPS', props); //logs PROPerly
