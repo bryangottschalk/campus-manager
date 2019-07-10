@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-import enzyme, { shallow } from 'enzyme';
+import enzyme, { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
@@ -32,7 +32,7 @@ import AllStudents from '../../app/components/AllStudents';
 describe('Tier One: Campuses', () => {
   describe('<AllCampuses /> component', () => {
     it('renders the campuses passed in as props', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <AllCampuses
           campuses={[
             {
@@ -57,8 +57,9 @@ describe('Tier One: Campuses', () => {
       ]);
     });
 
-    xit('*** renders "No Campuses" if passed an empty array of campuses', () => {
-      throw new Error('replace this error with your own test');
+    it('*** renders "No Campuses" if passed an empty array of campuses', () => {
+      const wrapper = shallow(<AllCampuses campuses={[]} />);
+      expect(wrapper.text()).to.include('no campuses');
     });
   });
 

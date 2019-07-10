@@ -9,14 +9,16 @@ const campuses = [
   {
     name: 'fullstack',
     address: '12',
-    imageUrl: 'https://www.fullstackacademy.com/images/fa-logo@2x.png',
+    imageUrl:
+      'https://cloud.fullstackacademy.com/fullstack-academy-logo-color-on-white.png?mtime=20160802141645',
     description:
       'Fullstack Academy is an immersive software engineering coding bootcamp located in New York City and Chicago. Students of the full-time flagship course learn full stack JavaScript over the course of a 13-week, on-campus program.',
   },
   {
     name: 'gracehopper',
     address: '34',
-    imageUrl: 'https://www.gracehopper.com/images/gh-logo-sm-w-h_1.svg',
+    imageUrl:
+      'https://cdn-images-1.medium.com/max/1600/1*Z4KQVqvrFs2FQjJTcLvmNw.png',
     description:
       'The Grace Hopper Program at Fullstack Academy is an immersive software engineering course for women with no upfront tuition cost.',
   },
@@ -31,7 +33,7 @@ const campuses = [
     name: 'hack reactor',
     address: '78',
     imageUrl:
-      'https://s3.amazonaws.com/bloc-global-assets/almanac-assets/bootcamps/logos/000/002/730/original/Hack-Reactor.png?1467187370',
+      'http://hrhqdir.s3.amazonaws.com/brand-guide/HackReactor_RGBLogo-Gray-Blue.png',
     description:
       'Hack Reactor is a software engineering Coding Bootcamp education program founded in San Francisco by Anthony Phillips, Shawn Drost, Marcus Phillips, and Douglas Calhoun in 2012.',
   },

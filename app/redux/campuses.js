@@ -23,6 +23,7 @@ export const fetchCampuses = () => {
   };
 };
 
+//Campuser subreducer
 const campusesReducer = (state = [], action) => {
   switch (action.type) {
     case SET_CAMPUSES:

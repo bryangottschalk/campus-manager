@@ -4,16 +4,12 @@ import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
 import { fetchCampuses } from '../redux/campuses';
 import { fetchStudents } from '../redux/students';
-
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 // import AllStudents from './AllStudents';
 
 class Root extends React.Component {
   componentDidMount() {
-    // Huh, I wonder what this mysterious componentDidMount is doing here... 🤔
-    //first make this a connected component
-    //call this.props.loadCampuses() here from thunk
     this.props.loadCampuses();
     this.props.loadStudents();
   }

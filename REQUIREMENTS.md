@@ -40,8 +40,8 @@ The requirements below are broken into separate **tiers**, which model the way w
 
 #### Testing
 
-- [ ] React (AllCampuses): renders "No Campuses" if passed an empty array of campuses
-- [ ] React (AllStudents): renders "No Students" if passed an empty array of students
+- ['x'] React (AllCampuses): renders "No Campuses" if passed an empty array of campuses
+- ['x'] React (AllStudents): renders "No Students" if passed an empty array of students
 - [ ] Redux (campuses): returns the initial state by default
 - [ ] Redux (students): returns the initial state by default
 - ['x'] Express: GET /api/students responds with all students

@@ -3,7 +3,6 @@
 import React from 'react';
 
 export default function Campus(props) {
-  // console.log('TCL: SingleCampus -> props', props);
   const campus = props.campus;
   return (
     <li className={'campuses'}>

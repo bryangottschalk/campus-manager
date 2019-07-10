@@ -45,8 +45,9 @@ describe('Tier One: Students', () => {
       expect(wrapper.text()).to.include('Sally Ride');
     });
 
-    xit('*** renders "No Students" if passed an empty array of students', () => {
-      throw new Error('replace this error with your own test');
+    it('*** renders "No Students" if passed an empty array of students', () => {
+      const wrapper = shallow(<AllStudents students={[]} />);
+      expect(wrapper.text()).to.include('no students');
     });
   });
 

@@ -1,5 +1,3 @@
-// students sub-reducer
-
 import axios from 'axios';
 
 // Action types
@@ -24,6 +22,7 @@ export const fetchStudents = () => {
   };
 };
 
+//Students subreducer
 const studentsReducer = (state = [], action) => {
   switch (action.type) {
     case SET_STUDENTS:
