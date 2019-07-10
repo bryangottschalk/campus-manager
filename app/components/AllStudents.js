@@ -3,21 +3,14 @@ import { connect } from 'react-redux';
 import Student from './Student';
 
 export const AllStudents = props => {
-  // console.log('STUDENT PROPS', props); //logs PROPerly
   const { students } = props;
   return (
     <div>
+      <h1>All Students</h1>
       <ul>
-        <li>
-          <h1>
-            {students[0].firstName} {students[0].lastName}
-          </h1>
-        </li>
-        <li>
-          <h1>
-            {students[1].firstName} {students[1].lastName}
-          </h1>
-        </li>
+        {students.map(student => (
+          <Student student={student} key={student.id} />
+        ))}
       </ul>
     </div>
   );

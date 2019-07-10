@@ -32,6 +32,10 @@ main {
   justify-content: center;
 }
 
+nav a {
+  color: white;
+  padding: 20px;
+}
 /* Campuses */
 
 .campuses {
@@ -40,4 +44,10 @@ main {
 
 .campusLogos {
   width: 300px;
+}
+
+/* Students */
+
+.students {
+  list-style: none;
 }
