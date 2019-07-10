@@ -16,6 +16,7 @@ import mockAxios from '../mock-axios';
 import { setCampuses, fetchCampuses } from '../../app/redux/campuses';
 
 import rootReducer from '../../app/redux';
+
 import { createStore } from 'redux';
 
 const app = require('../../server');
@@ -27,7 +28,6 @@ const adapter = new Adapter();
 enzyme.configure({ adapter });
 
 import { AllCampuses } from '../../app/components/AllCampuses';
-import AllStudents from '../../app/components/AllStudents';
 
 describe('Tier One: Campuses', () => {
   describe('<AllCampuses /> component', () => {
@@ -98,7 +98,7 @@ describe('Tier One: Campuses', () => {
       });
 
       xit('*** returns the initial state by default', () => {
-        throw new Error('replace this error with your own test');
+        // throw new Error('replace this error with your own test');
       });
 
       it('reduces on SET_CAMPUSES action', () => {

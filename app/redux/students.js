@@ -14,7 +14,6 @@ export const fetchStudents = () => {
   return async dispatch => {
     try {
       const { data } = await axios.get('/api/students');
-      console.log('STUDENT DATA', data);
       await dispatch(setStudents(data));
     } catch (err) {
       console.log('ERROR fetching students:', err);
