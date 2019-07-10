@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCampuses } from '../redux/campuses';
-import { SingleCampus } from './SingleCampus';
 // import { singleCampus } from './singleCampus';
 
 export const AllCampuses = props => {
-  console.log('CAMPUS PROPS', props); // logs PROPerly
+  // props.campuses = props.loadCampuses();
+  // console.log('props.campuses', props.campuses);
   const { campuses } = props;
-
+  // console.log('campuses HERE', campuses);
   /*
   CAMPUS PROPS { campuses:
    [ { id: 1, name: 'Mars Academy', imageUrl: '/images/mars.png' },
@@ -17,15 +17,24 @@ export const AllCampuses = props => {
 
       //attempt to render a singleCampus component for each element in the array
   */
-  console.log('in campuses');
   return (
+    // <div>
+    //   <ul>
+    //     {campuses.map(campus => (
+    //       <SingleCampus campus={campus} key={campus.id} />
+    //     ))}
+    //   </ul>
+    // </div>
     <div>
       <ul>
-        {campuses.map(campus => (
-          <li key={campus.id}>
-            <SingleCampus campus={campus} />
-          </li>
-        ))}
+        <li>
+          <h1>{campuses[0].name}</h1>
+          <img src={campuses[0].imageUrl} />
+        </li>
+        <li>
+          <h1>{campuses[1].name}</h1>
+          <img src={campuses[1].imageUrl} />
+        </li>
       </ul>
     </div>
   );
@@ -42,11 +51,8 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  getCampuses: data => dispatch(fetchCampuses(data)),
-});
+// const mapDispatchToProps = dispatch => ({
+//   loadCampuses: data => dispatch(fetchCampuses(data)),
+// });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AllCampuses); //now a connected component
+export default connect(mapStateToProps)(AllCampuses); //now a connected component

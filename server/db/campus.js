@@ -21,7 +21,7 @@ const Campus = db.define('campus', {
     defaultValue: 'http://',
   },
   description: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
   },
 });
 

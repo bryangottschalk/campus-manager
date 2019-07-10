@@ -36,12 +36,45 @@ const campuses = [
   },
 ];
 
+const students = [
+  {
+    firstName: 'Bryan',
+    lastName: 'Gottschalk',
+    email: 'bryan@email.com',
+    imageUrl: '',
+    gpa: '2.0',
+  },
+  {
+    firstName: 'Kayla',
+    lastName: 'Varacalli',
+    email: 'kayla@email.com',
+    imageUrl: '',
+    gpa: '3.5',
+  },
+  {
+    firstName: 'Ali',
+    lastName: 'Gottschalk',
+    email: 'ali@email.com',
+    imageUrl: '',
+    gpa: '4.0',
+  },
+  {
+    firstName: 'Stephen',
+    lastName: 'Bott',
+    email: 'stephen@email.com',
+    imageUrl: '',
+    gpa: '3.0',
+  },
+];
+
 const seed = async () => {
   try {
+    // await db.sync({ force: true });
     await db.sync({ force: true });
-    await Promise.all(campuses.map(campus => Campus.create(campus))); // seed attempt
-    await db.close();
+    await Promise.all(campuses.map(campus => Campus.create(campus))); // seed attempts
+    await Promise.all(students.map(student => Student.create(student)));
     console.log('Database was successfully seeded!');
+    // db.close();
     // seed your database here!
   } catch (err) {
     console.log(red(err));

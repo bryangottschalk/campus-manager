@@ -15,7 +15,7 @@ export const fetchCampuses = () => {
   return async dispatch => {
     try {
       const { data } = await axios.get('/api/campuses');
-      // console.log('CAMPUS DATA', data);
+      console.log('CAMPUS DATA', data);
       await dispatch(setCampuses(data));
     } catch (err) {
       console.log('ERROR fetching campuses:', err);

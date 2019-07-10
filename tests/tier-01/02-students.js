@@ -32,7 +32,7 @@ import { ADDRGETNETWORKPARAMS } from 'dns';
 
 describe('Tier One: Students', () => {
   describe('<AllStudents /> component', () => {
-    xit('renders the students passed in as props', () => {
+    it('renders the students passed in as props', () => {
       const wrapper = shallow(
         <AllStudents
           students={[

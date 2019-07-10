@@ -1,15 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AllCampuses from './AllCampuses';
-import AllStudents from './AllStudents';
+import { fetchCampuses } from '../redux/campuses';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// import AllStudents from './AllStudents';
 
 class Root extends React.Component {
   componentDidMount() {
-    console.log('PROPS', this.props);
     // Huh, I wonder what this mysterious componentDidMount is doing here... 🤔
+    //first make this a connected component
+    //call this.props.loadCampuses() here from thunk
+    // console.log('root props:', this.props);
+    this.props.loadCampuses();
   }
   render() {
-    console.log('are you running????');
+    // console.log('PROPS in root render', this.props);
     return (
       <div>
         <nav>Welcome!</nav>
@@ -17,7 +23,9 @@ class Root extends React.Component {
           <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
           <p>This seems like a nice place to get started with some Routes!</p>
           <div>
-            <AllCampuses />
+            <Router>
+              <Route path="/campuses" component={AllCampuses} />
+            </Router>
           </div>
         </main>
       </div>
@@ -25,11 +33,18 @@ class Root extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     students: state.students,
-//   };
-// };
-// export default connect(null, mapDispatchToProps)(AllStudents); //now a connected component
+const mapStateToProps = state => {
+  return {
+    campuses: state.campuses,
+    students: state.students,
+  };
+};
 
-export default Root;
+const mapDispatchToProps = dispatch => ({
+  loadCampuses: () => dispatch(fetchCampuses()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Root);
