@@ -11,11 +11,10 @@ class Root extends React.Component {
     // Huh, I wonder what this mysterious componentDidMount is doing here... 🤔
     //first make this a connected component
     //call this.props.loadCampuses() here from thunk
-    // console.log('root props:', this.props);
     this.props.loadCampuses();
   }
   render() {
-    // console.log('PROPS in root render', this.props);
+    console.log('PROPS in root render', this.props);
     return (
       <div>
         <nav>Welcome!</nav>

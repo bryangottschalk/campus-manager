@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCampuses } from '../redux/campuses';
-// import { singleCampus } from './singleCampus';
+import { Campus } from './Campus';
 
 export const AllCampuses = props => {
   // props.campuses = props.loadCampuses();
   // console.log('props.campuses', props.campuses);
   const { campuses } = props;
-  // console.log('campuses HERE', campuses);
+  console.log('campuses HERE', campuses);
   /*
   CAMPUS PROPS { campuses:
    [ { id: 1, name: 'Mars Academy', imageUrl: '/images/mars.png' },
@@ -18,25 +18,25 @@ export const AllCampuses = props => {
       //attempt to render a singleCampus component for each element in the array
   */
   return (
-    // <div>
-    //   <ul>
-    //     {campuses.map(campus => (
-    //       <SingleCampus campus={campus} key={campus.id} />
-    //     ))}
-    //   </ul>
-    // </div>
     <div>
       <ul>
-        <li>
-          <h1>{campuses[0].name}</h1>
-          <img src={campuses[0].imageUrl} />
-        </li>
-        <li>
-          <h1>{campuses[1].name}</h1>
-          <img src={campuses[1].imageUrl} />
-        </li>
+        {campuses.map(campus => (
+          <Campus campus={campus} key={campus.id} />
+        ))}
       </ul>
     </div>
+    // <div>
+    //   <ul>
+    //     <li>
+    //       <h1>{campuses[0].name}</h1>
+    //       <img src={campuses[0].imageUrl} />
+    //     </li>
+    //     <li>
+    //       <h1>{campuses[1].name}</h1>
+    //       <img src={campuses[1].imageUrl} />
+    //     </li>
+    //   </ul>
+    // </div>
   );
 };
 
