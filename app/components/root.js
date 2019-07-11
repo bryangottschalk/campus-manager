@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
 import SingleStudent from './SingleStudent';
+import SingleCampus from './SingleCampus';
 import { fetchCampuses } from '../redux/campuses';
 import { fetchStudents, fetchSingleStudent } from '../redux/students';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
@@ -30,6 +31,7 @@ class Root extends React.Component {
               <Route exact path="/campuses" component={AllCampuses} />
               <Route exact path="/students" component={AllStudents} />
               <Route path="/students/:id" component={SingleStudent} />
+              <Route path="/campuses/:id" component={SingleCampus} />
             </div>
           </main>
         </div>

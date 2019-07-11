@@ -25,7 +25,7 @@ const Student = db.define('student', {
     },
   },
   imageUrl: {
-    type: Sequelize.TEXT,
+    type: Sequelize.STRING,
     defaultValue: 'http://',
   },
   gpa: {
