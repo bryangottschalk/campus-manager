@@ -1,34 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const SingleStudent = props => {
-  const studentId = Number(props.match.params.id);
-  const { students } = props;
-
-  return (
-    <div>
-      {students.length ? (
-        <div>
-          <h1>
-            Hello! My name is:
-            {
-              students.find(student => {
-                return student.id === studentId;
-              }).firstName
-            }
-            {
-              students.find(student => {
-                return student.id === studentId;
-              }).lastName
-            }
-          </h1>
-        </div>
-      ) : (
-        ''
-      )}
-    </div>
-  );
-};
+class SingleStudent extends React.Component {
+  getStudent(students) {
+    const studentId = Number(this.props.match.params.id);
+    return students.find(student => {
+      return student.id === studentId;
+    });
+  }
+  render() {
+    const student = this.getStudent(this.props.students);
+    return (
+      <div>
+        {this.props.students.length ? (
+          <div>
+            <h1>Student Profile</h1>
+            <img src={student.imageUrl} />
+            <h2>
+              Hello! My name is:
+              {` ${student.firstName} ${student.lastName}`}
+            </h2>
+            <h3>Email {student.email}</h3>
+            <h3>GPA: {student.gpa}</h3>
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -36,12 +37,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  // loadSingleStudent: data => dispatch(fetchSingleStudent(data)),
-  loadStudents: () => dispatch(fetchStudents()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SingleStudent);
+export default connect(mapStateToProps)(SingleStudent);

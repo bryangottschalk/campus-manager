@@ -68,7 +68,7 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 - [ ] Clicking on a campus from the all-campuses view should navigate to show that campus in the single-campus view
 
 - Write a component to display a single student with the following information:
-  - [ ] The student's full name, email, image, and gpa
+  - ['x'] The student's full name, email, image, and gpa
   - [ ] The name of their campus (or a helpful message if they don't have one)
 - [ ] Display the appropriate student when the url matches `/students/:studentId`
 - [ ] Clicking on a student from the all-students view should navigate to show that student in the single-student view
@@ -79,7 +79,7 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 #### Backend
 
 - [ ] Write a route to serve up a single campus (based on its id), _including that campuses' students_
-- [ ] Write a route to serve up a single student (based on their id), _including that student's campus_
+- ['x'] Write a route to serve up a single student (based on their id), _including that student's campus_
 
 Congrats! You have completed your second vertical slice! Make sure to `commit -m "Feature: Get Single Campus and Student"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 

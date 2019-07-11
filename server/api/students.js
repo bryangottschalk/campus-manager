@@ -6,17 +6,13 @@ router.get('/', async (req, res, next) => {
   try {
     console.log('in the /students get req');
     const students = await Student.findAll();
-    // console.log('ALL STUDENTS DATA', students);
     res.json(students);
   } catch (err) {
     next(err);
   }
 });
 
-//Work on this tomorrow and delete commented code below
 router.get('/:id', async (req, res, next) => {
-  console.log('matched /studentId route!');
-
   try {
     const studentId = req.params.id;
     const student = await Student.findByPk(studentId);

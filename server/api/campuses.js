@@ -11,4 +11,21 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/:id', async (req, res, next) => {
+  console.log('matched /campusId route!');
+
+  try {
+    const campusId = req.params.id;
+    const campus = await Campus.findByPk(campusId);
+    console.log('DATA', campus);
+    if (!campus) {
+      res.status(404).send("couldn't find campus");
+    } else {
+      res.status(200).json(campus);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
