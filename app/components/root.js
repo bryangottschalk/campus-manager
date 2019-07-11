@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
+import SingleStudent from './SingleStudent';
 import { fetchCampuses } from '../redux/campuses';
-import { fetchStudents } from '../redux/students';
+import { fetchStudents, fetchSingleStudent } from '../redux/students';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 // import AllStudents from './AllStudents';
@@ -14,6 +15,7 @@ class Root extends React.Component {
     this.props.loadStudents();
   }
   render() {
+    console.log('root props', this.props);
     return (
       <Router>
         <div>
@@ -26,10 +28,9 @@ class Root extends React.Component {
             <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
             <p>This seems like a nice place to get started with some Routes!</p>
             <div>
-              <Switch>
-                <Route exact path="/campuses" component={AllCampuses} />
-                <Route exact path="/students" component={AllStudents} />
-              </Switch>
+              <Route exact path="/campuses" component={AllCampuses} />
+              <Route exact path="/students" component={AllStudents} />
+              <Route path="/students/:id" component={SingleStudent} />
             </div>
           </main>
         </div>
@@ -48,6 +49,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   loadCampuses: () => dispatch(fetchCampuses()),
   loadStudents: () => dispatch(fetchStudents()),
+  loadSingleStudent: () => dispatch(fetchSingleStudent()),
 });
 
 export default connect(
