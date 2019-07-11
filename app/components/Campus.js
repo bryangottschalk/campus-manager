@@ -11,7 +11,7 @@ export default function Campus(props) {
       <Link to={`/campuses/${props.campus.id}`}>
         <h1>{campus.name}</h1>
       </Link>
-      <p>Address:{campus.address}</p>
+      <p>Address: {campus.address}</p>
       <p>{campus.description}</p>
     </li>
   );

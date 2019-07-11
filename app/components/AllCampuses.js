@@ -6,7 +6,7 @@ export const AllCampuses = props => {
   const { campuses } = props;
   return (
     <div>
-      <h1>All Campuses</h1>
+      <h1 className="allCampuses">All Campuses</h1>
       <ul>
         {!campuses.length ? (
           <p>There are no campuses registered in the database. :(</p>

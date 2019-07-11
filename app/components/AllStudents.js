@@ -8,7 +8,7 @@ export const AllStudents = props => {
     <div>
       <h1>All Students</h1>
       <hr />
-      <ul>
+      <ul className="allStudents">
         {!students.length ? (
           <p>There are no students registered in the database. :(</p>
         ) : (

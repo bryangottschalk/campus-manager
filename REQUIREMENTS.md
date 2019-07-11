@@ -73,8 +73,8 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 - ['x'] Display the appropriate student when the url matches `/students/:studentId`
 - ['x'] Clicking on a student from the all-students view should navigate to show that student in the single-student view
 
-- ['0'] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
-- ['0'] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
+- ['x'] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
+- ['x'] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
 
 #### Backend
 

@@ -22,7 +22,7 @@ nav {
   color: #c0c0c0;
   display: flex;
   height: 80px;
-  padding: 10px;
+  padding: 10px 40px;
 }
 
 main {
@@ -36,6 +36,7 @@ nav a {
   color: white;
   padding: 20px;
 }
+
 /* Campuses */
 
 .campuses {
@@ -46,7 +47,16 @@ nav a {
   width: 300px;
 }
 
+.allCampuses {
+  padding-left: 40px;
+}
+
 /* Students */
+
+.allStudents {
+  display: flex;
+  flex-direction: column;
+}
 
 .students {
   list-style: none;

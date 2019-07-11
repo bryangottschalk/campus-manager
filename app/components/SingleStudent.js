@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class SingleStudent extends React.Component {
   getStudent(students) {
@@ -29,10 +30,14 @@ class SingleStudent extends React.Component {
               {` ${student.firstName} ${student.lastName}.`}
             </h2>
             <h3>
-              Campus:
-              {student.campusId
-                ? ` ${this.getCampus(student.campusId).name}`
-                : ` ${student.firstName} is not enrolled in school right now.`}
+              Campus:{' '}
+              {student.campusId ? (
+                <Link to={`/campuses/${this.getCampus(student.campusId).id}`}>
+                  {`${this.getCampus(student.campusId).name}`}
+                </Link>
+              ) : (
+                ` ${student.firstName} is not enrolled in school right now.`
+              )}
             </h3>
             <h3>Email: {student.email}</h3>
             <h3>GPA: {student.gpa}</h3>

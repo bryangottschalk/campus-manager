@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class SingleCampus extends React.Component {
   getCampus(campuses) {
@@ -35,7 +36,9 @@ class SingleCampus extends React.Component {
             studentsAtCampus.map(student => {
               return (
                 <li key={student.id}>
-                  {`${student.firstName} ${student.lastName}`}
+                  <Link to={`/students/${student.id}`}>
+                    {`${student.firstName} ${student.lastName}`}
+                  </Link>
                 </li>
               );
             })
