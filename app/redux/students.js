@@ -27,6 +27,7 @@ export const fetchStudents = () => {
   };
 };
 
+//not currently using this thunk anywhere since all data is loaded in the root component. would be useful to implement if time allows!
 export const fetchSingleStudent = () => {
   return async dispatch => {
     try {

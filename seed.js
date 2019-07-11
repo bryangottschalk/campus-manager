@@ -7,7 +7,7 @@ const Student = require('./server/db/student');
 // commented these out to debug
 const campuses = [
   {
-    name: 'fullstack',
+    name: 'Fullstack Academy',
     address: '12',
     imageUrl:
       'https://cloud.fullstackacademy.com/fullstack-academy-logo-color-on-white.png?mtime=20160802141645',
@@ -15,7 +15,7 @@ const campuses = [
       'Fullstack Academy is an immersive software engineering coding bootcamp located in New York City and Chicago. Students of the full-time flagship course learn full stack JavaScript over the course of a 13-week, on-campus program.',
   },
   {
-    name: 'gracehopper',
+    name: 'Gracehopper | Fullstack Academy',
     address: '34',
     imageUrl:
       'https://cdn-images-1.medium.com/max/1600/1*Z4KQVqvrFs2FQjJTcLvmNw.png',
@@ -23,14 +23,14 @@ const campuses = [
       'The Grace Hopper Program at Fullstack Academy is an immersive software engineering course for women with no upfront tuition cost.',
   },
   {
-    name: 'flatiron',
+    name: 'Flatiron School',
     address: '56',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/61/FS_wiki.png',
     description:
       'Flatiron School is an educational organization founded in 2012 by Adam Enbar and Avi Flombaum. The organization is based in New York City and teaches software engineering, computer programming, data science, and UX/UI design.',
   },
   {
-    name: 'hack reactor',
+    name: 'Hack Reactor',
     address: '78',
     imageUrl:
       'http://hrhqdir.s3.amazonaws.com/brand-guide/HackReactor_RGBLogo-Gray-Blue.png',

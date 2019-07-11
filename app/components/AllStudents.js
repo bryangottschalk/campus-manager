@@ -7,6 +7,7 @@ export const AllStudents = props => {
   return (
     <div>
       <h1>All Students</h1>
+      <hr />
       <ul>
         {!students.length ? (
           <p>There are no students registered in the database. :(</p>

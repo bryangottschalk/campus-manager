@@ -19,17 +19,16 @@ class SingleCampus extends React.Component {
     const studentsAtCampus = this.getStudentsAtCampus(this.props.students);
     return (
       <div>
-        {this.props.campuses.length ? (
+        {this.props.campuses.length && (
           <div>
             <h1>Campus Profile</h1>
             <img className="campusLogos" src={campus.imageUrl} />
             <h2>Campus Name: {campus.name}</h2>
             <h3>Address: {campus.address}</h3>
             <p>{campus.description}</p>
-            <h1>Students:</h1>
+            <hr />
+            <h2>Students on Campus:</h2>
           </div>
-        ) : (
-          ''
         )}
         <ul>
           {studentsAtCampus.length ? (

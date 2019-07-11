@@ -4,7 +4,6 @@ import Campus from './Campus';
 
 export const AllCampuses = props => {
   const { campuses } = props;
-
   return (
     <div>
       <h1>All Campuses</h1>

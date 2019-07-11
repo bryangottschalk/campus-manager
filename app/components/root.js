@@ -8,10 +8,9 @@ import { fetchCampuses } from '../redux/campuses';
 import { fetchStudents, fetchSingleStudent } from '../redux/students';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-// import AllStudents from './AllStudents';
-
 class Root extends React.Component {
   componentDidMount() {
+    //this should be refactored if i have time. this forces every user to load the entire database even if they only want to view a nested page such as /students or /campuses
     this.props.loadCampuses();
     this.props.loadStudents();
   }
@@ -39,13 +38,6 @@ class Root extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    campuses: state.campuses,
-    students: state.students,
-  };
-};
-
 const mapDispatchToProps = dispatch => ({
   loadCampuses: () => dispatch(fetchCampuses()),
   loadStudents: () => dispatch(fetchStudents()),
@@ -53,6 +45,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Root);
