@@ -43,7 +43,7 @@ const students = [
   {
     firstName: 'Bryan',
     lastName: 'Gottschalk',
-    email: 'bryan@email.com',
+    email: 'bryan@example.org',
     imageUrl: 'https://robohash.org/Bryan',
     gpa: '2.0',
     campusId: 1,
@@ -51,24 +51,33 @@ const students = [
   {
     firstName: 'Kayla',
     lastName: 'Varacalli',
-    email: 'kayla@email.com',
+    email: 'kayla@example.org',
     imageUrl: 'https://robohash.org/Kayla',
     gpa: '3.5',
-    campusId: 1,
+    campusId: 2,
   },
   {
     firstName: 'Ali',
     lastName: 'Gottschalk',
-    email: 'ali@email.com',
+    email: 'ali@example.org',
     imageUrl: 'https://robohash.org/Alison',
     gpa: '4.0',
+    campusId: 2,
   },
   {
     firstName: 'Stephen',
     lastName: 'Bott',
-    email: 'stephen@email.com',
+    email: 'stephen@example.org',
     imageUrl: 'https://robohash.org/Stephen',
     gpa: '3.0',
+    campusId: 4,
+  },
+  {
+    firstName: 'Jake',
+    lastName: 'Adams',
+    email: 'jake@example.org',
+    imageUrl: 'https://robohash.org/Jake',
+    gpa: '3.3',
   },
 ];
 
