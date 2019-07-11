@@ -8,21 +8,42 @@ class SingleCampus extends React.Component {
       return campus.id === campusId;
     });
   }
+  getStudentsAtCampus(students) {
+    const campusId = Number(this.props.match.params.id);
+    return students.filter(student => {
+      return student.campusId === campusId;
+    });
+  }
   render() {
     const campus = this.getCampus(this.props.campuses);
+    const studentsAtCampus = this.getStudentsAtCampus(this.props.students);
     return (
       <div>
         {this.props.campuses.length ? (
           <div>
             <h1>Campus Profile</h1>
-            <img className={'campusLogos'} src={campus.imageUrl} />
+            <img className="campusLogos" src={campus.imageUrl} />
             <h2>Campus Name: {campus.name}</h2>
             <h3>Address: {campus.address}</h3>
-            <h3>{campus.description}</h3>
+            <p>{campus.description}</p>
+            <h1>Students:</h1>
           </div>
         ) : (
           ''
         )}
+        <ul>
+          {studentsAtCampus.length ? (
+            studentsAtCampus.map(student => {
+              return (
+                <li key={student.id}>
+                  {`${student.firstName} ${student.lastName}`}
+                </li>
+              );
+            })
+          ) : (
+            <p>There are no students enrolled at this campus.</p>
+          )}
+        </ul>
       </div>
     );
   }
@@ -31,6 +52,7 @@ class SingleCampus extends React.Component {
 const mapStateToProps = state => {
   return {
     campuses: state.campuses,
+    students: state.students,
   };
 };
 

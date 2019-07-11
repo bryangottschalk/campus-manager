@@ -46,6 +46,7 @@ const students = [
     email: 'bryan@email.com',
     imageUrl: 'https://robohash.org/Bryan',
     gpa: '2.0',
+    campusId: 1,
   },
   {
     firstName: 'Kayla',
@@ -53,6 +54,7 @@ const students = [
     email: 'kayla@email.com',
     imageUrl: 'https://robohash.org/Kayla',
     gpa: '3.5',
+    campusId: 1,
   },
   {
     firstName: 'Ali',

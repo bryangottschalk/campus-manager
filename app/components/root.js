@@ -16,7 +16,6 @@ class Root extends React.Component {
     this.props.loadStudents();
   }
   render() {
-    console.log('root props', this.props);
     return (
       <Router>
         <div>
