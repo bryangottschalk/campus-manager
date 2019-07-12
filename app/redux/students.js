@@ -3,6 +3,7 @@ import axios from 'axios';
 // Action types
 const SET_STUDENTS = 'SET_STUDENTS';
 const ADD_STUDENT = 'ADD_STUDENT';
+const DELETE_STUDENT = 'DELETE_STUDENT';
 // const GET_SINGLE_STUDENT = 'GET_SINGLE_STUDENT';
 
 // Action creators
@@ -11,16 +12,21 @@ export const setStudents = students => ({
   students,
 });
 
+export const addStudent = student => ({
+  type: ADD_STUDENT,
+  student,
+});
+
+export const deleteStudent = studentId => ({
+  type: DELETE_STUDENT,
+  studentId,
+});
+
 //not currently using this action creator since all data is loaded in the root componenet. should refactor if time allows.
 // export const getSingleStudent = studentId => ({
 //   type: GET_SINGLE_STUDENT,
 //   studentId,
 // });
-
-export const addStudent = student => ({
-  type: ADD_STUDENT,
-  student,
-});
 
 //Thunk creators
 export const fetchStudents = () => {
@@ -45,6 +51,17 @@ export const postStudent = formSubmission => {
     }
   };
 };
+
+export const removeStudent = studentId => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/students/${studentId}`);
+      dispatch(deleteStudent(studentId));
+    } catch (err) {
+      console.log('ERROR deleting student', err);
+    }
+  };
+};
 //not currently using this thunk anywhere since all data is loaded in the root component. would be useful to implement if time allows!
 // export const fetchSingleStudent = () => {
 //   return async dispatch => {
@@ -65,6 +82,12 @@ const studentsReducer = (state = [], action) => {
       return action.students;
     case ADD_STUDENT:
       return [...state, action.student];
+    case DELETE_STUDENT:
+      return [
+        ...state.filter(student => {
+          return student.id !== action.studentId;
+        }),
+      ];
     default:
       return state;
   }

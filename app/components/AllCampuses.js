@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Campus from './Campus';
-import { postCampus } from '../redux/campuses';
+import { postCampus, removeCampus } from '../redux/campuses';
 
 export class AllCampuses extends React.Component {
   constructor(props) {
@@ -14,6 +14,7 @@ export class AllCampuses extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.removeCampus = this.removeCampus.bind(this);
   }
 
   handleChange(evt) {
@@ -30,6 +31,10 @@ export class AllCampuses extends React.Component {
       imageUrl: '',
       description: '',
     });
+  }
+
+  removeCampus(campusId) {
+    this.props.deleteCampus(campusId);
   }
 
   render() {
@@ -79,7 +84,13 @@ export class AllCampuses extends React.Component {
             {!campuses.length ? (
               <p>There are no campuses registered in the database. :(</p>
             ) : (
-              campuses.map(campus => <Campus campus={campus} key={campus.id} />)
+              campuses.map(campus => (
+                <Campus
+                  campus={campus}
+                  key={campus.id}
+                  removeCampus={this.removeCampus}
+                />
+              ))
             )}
           </ul>
         </div>
@@ -96,6 +107,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   loadCampus: formSubmission => dispatch(postCampus(formSubmission)),
+  deleteCampus: campusId => dispatch(removeCampus(campusId)),
 });
 
 export default connect(

@@ -37,7 +37,6 @@ class AddCampusForm extends React.Component {
   }
 
   render() {
-    // console.log('HERE', this.props);
     const { name, address, imageUrl, description } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>

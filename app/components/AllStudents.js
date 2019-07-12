@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Student from './Student';
-import { postStudent } from '../redux/students';
+import { postStudent, removeStudent } from '../redux/students';
 
 export class AllStudents extends React.Component {
   constructor() {
@@ -11,10 +11,11 @@ export class AllStudents extends React.Component {
       lastName: '',
       email: '',
       imageUrl: '',
-      gpa: null,
+      gpa: undefined,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.removeStudent = this.removeStudent.bind(this);
   }
   handleChange(evt) {
     this.setState({
@@ -29,10 +30,13 @@ export class AllStudents extends React.Component {
       lastName: '',
       email: '',
     });
-    //call thunk
   }
+
+  removeStudent(studentId) {
+    this.props.deleteStudent(studentId);
+  }
+
   render() {
-    console.log('this.state', this.state);
     const { students } = this.props;
     const { firstName, lastName, email, imageUrl, gpa } = this.state;
     return (
@@ -86,7 +90,11 @@ export class AllStudents extends React.Component {
             <p>There are no students registered in the database. :(</p>
           ) : (
             students.map(student => (
-              <Student student={student} key={student.id} />
+              <Student
+                student={student}
+                key={student.id}
+                removeStudent={this.removeStudent}
+              />
             ))
           )}
         </ul>
@@ -103,6 +111,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   loadStudent: formSubmission => dispatch(postStudent(formSubmission)),
+  deleteStudent: studentId => dispatch(removeStudent(studentId)),
 });
 
 export default connect(

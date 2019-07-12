@@ -79,3 +79,14 @@ nav a {
 .students {
   list-style: none;
 }
+
+/* Buttons */
+.edit {
+  background-color: darkgreen;
+  color: white;
+}
+
+.delete {
+  background-color: darkred;
+  color: white;
+}

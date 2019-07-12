@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 class SingleStudent extends React.Component {
   getStudent(students) {
-    console.log('getStudent props', this.props);
     const studentId = Number(this.props.match.params.id);
     return students.find(student => {
       return student.id === studentId;

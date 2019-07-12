@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Campus = require('../db/campus');
-//routes specific to campuses
-
+// routes specific to campuses
+// don't forget to add error handling here!
 router.get('/', async (req, res, next) => {
   try {
     const campuses = await Campus.findAll();
@@ -12,12 +12,9 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:id', async (req, res, next) => {
-  console.log('matched /campusId route!');
-
   try {
     const campusId = req.params.id;
     const campus = await Campus.findByPk(campusId);
-    console.log('DATA', campus);
     if (!campus) {
       res.status(404).send("couldn't find campus");
     } else {
@@ -30,11 +27,21 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    // console.log('req.body', req.body);
-    // console.log('in the post');
     const newCampus = await Campus.create(req.body);
-    // console.log('new campus', newCampus);
     res.json(newCampus);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await Campus.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.sendStatus(200);
   } catch (err) {
     next(err);
   }
