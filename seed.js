@@ -1,6 +1,6 @@
 const { green, red } = require('chalk');
 const { db } = require('./server/db');
-
+const faker = require('faker');
 const Campus = require('./server/db/campus');
 const Student = require('./server/db/student');
 
