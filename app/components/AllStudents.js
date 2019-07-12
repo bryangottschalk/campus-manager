@@ -7,6 +7,7 @@ export const AllStudents = props => {
   return (
     <div>
       <h1>All Students</h1>
+      <h2>Submit Student</h2>
       <hr />
       <ul className="allStudents">
         {!students.length ? (

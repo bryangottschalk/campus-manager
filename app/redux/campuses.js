@@ -28,10 +28,10 @@ export const fetchCampuses = () => {
   };
 };
 
-export const postCampus = () => {
+export const postCampus = formSubmission => {
   return async dispatch => {
     try {
-      const { data } = await axios.post('/api/campuses');
+      const { data } = await axios.post('/api/campuses', formSubmission); // form submission becomes req.body
       console.log('data from post req', data);
       dispatch(addCampus(data));
     } catch (err) {
@@ -45,6 +45,8 @@ const campusesReducer = (state = [], action) => {
   switch (action.type) {
     case SET_CAMPUSES:
       return action.campuses;
+    case ADD_CAMPUS:
+      return [...state, action.campus];
     default:
       return state;
   }

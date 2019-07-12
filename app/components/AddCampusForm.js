@@ -20,19 +20,20 @@ class AddCampusForm extends React.Component {
       [evt.target.name]: evt.target.value,
     });
   }
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     evt.preventDefault();
-    try {
-      await this.props.loadCampus(this.state);
-      this.setState({
-        name: '',
-        address: '',
-        imageUrl: '',
-        description: '',
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    this.props.loadCampus(this.state);
+    // try {
+    //   await this.props.loadCampus(this.state);
+    //   this.setState({
+    //     name: '',
+    //     address: '',
+    //     imageUrl: '',
+    //     description: '',
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
   }
 
   render() {
