@@ -3,11 +3,17 @@ import axios from 'axios';
 
 // Action types
 const SET_CAMPUSES = 'SET_CAMPUSES';
+const ADD_CAMPUS = 'ADD_CAMPUS';
 
 // Action creators
 export const setCampuses = campuses => ({
   type: SET_CAMPUSES,
   campuses,
+});
+
+export const addCampus = campus => ({
+  type: ADD_CAMPUS,
+  campus,
 });
 
 //Thunk creators
@@ -18,6 +24,18 @@ export const fetchCampuses = () => {
       dispatch(setCampuses(data));
     } catch (err) {
       console.log('ERROR fetching campuses:', err);
+    }
+  };
+};
+
+export const postCampus = () => {
+  return async dispatch => {
+    try {
+      const { data } = await axios.post('/api/campuses');
+      console.log('data from post req', data);
+      dispatch(addCampus(data));
+    } catch (err) {
+      console.log('ERROR adding campus', err);
     }
   };
 };

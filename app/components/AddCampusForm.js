@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { postCampus } from '../redux/campuses';
 
-export default class AddCampusForm extends React.Component {
+class AddCampusForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -14,25 +16,27 @@ export default class AddCampusForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(evt) {
-    console.log('in handle change');
     this.setState({
       [evt.target.name]: evt.target.value,
     });
   }
   async handleSubmit(evt) {
-    console.log('in handle submit');
     evt.preventDefault();
     try {
-      const res = await axios.post('/api/campuses', this.state);
-      this.setState(res.data);
-      console.log('state after setting', this.state);
+      await this.props.loadCampus(this.state);
+      this.setState({
+        name: '',
+        address: '',
+        imageUrl: '',
+        description: '',
+      });
     } catch (err) {
       console.log(err);
     }
   }
 
   render() {
-    console.log('HERE', this.props);
+    // console.log('HERE', this.props);
     const { name, address, imageUrl, description } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
@@ -73,3 +77,12 @@ export default class AddCampusForm extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  loadCampus: () => dispatch(postCampus()),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddCampusForm);
