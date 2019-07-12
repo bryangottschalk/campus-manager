@@ -20,7 +20,7 @@ class SingleCampus extends React.Component {
     const studentsAtCampus = this.getStudentsAtCampus(this.props.students);
     return (
       <div>
-        {this.props.campuses.length && (
+        {this.props.campuses.length && campus && (
           <div>
             <h1>Campus Profile</h1>
             <img className="campusLogos" src={campus.imageUrl} />

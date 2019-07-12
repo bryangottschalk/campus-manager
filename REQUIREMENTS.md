@@ -91,11 +91,11 @@ Congrats! You have completed your second vertical slice! Make sure to `commit -m
 
 #### Frontend
 
-- [ ] Write a component to display a form for adding a new campus that contains inputs for _at least_ the name and address.
-- [ ] Display this component EITHER as part of the all-campuses view, or as its own view
+- ['x'] Write a component to display a form for adding a new campus that contains inputs for _at least_ the name and address.
+- ['x'] Display this component EITHER as part of the all-campuses view, or as its own view
 - Submitting the form with a valid name/address should:
 
-  - [ ] Make an AJAX request that causes the new campus to be persisted in the database
+  - ['x'] Make an AJAX request that causes the new campus to be persisted in the database
   - [ ] Add the new campus to the list of campuses without needing to refresh the page
 
 - [ ] Write a component to display a form for adding a new student that contains inputs for _at least_ first name, last name and email

@@ -28,4 +28,16 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.post('/', async (req, res, next) => {
+  try {
+    console.log('req.body', req.body);
+    console.log('in the post');
+    const newCampus = await Campus.create(req.body);
+    console.log('new campus', newCampus);
+    res.json(newCampus);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

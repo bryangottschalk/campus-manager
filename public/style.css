@@ -25,6 +25,12 @@ nav {
   padding: 10px 40px;
 }
 
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
 main {
   align-items: center;
   display: flex;
@@ -37,7 +43,19 @@ nav a {
   padding: 20px;
 }
 
+/*Home Page*/
+
+.homePageHeader {
+  text-align: left;
+  padding-left: 40px;
+}
 /* Campuses */
+
+.campusesContainer {
+  /* width: 90vw; */
+  padding-left: 40px;
+  padding-right: 60px;
+}
 
 .campuses {
   list-style: none;
@@ -47,7 +65,7 @@ nav a {
   width: 300px;
 }
 
-.allCampuses {
+.heading {
   padding-left: 40px;
 }
 
