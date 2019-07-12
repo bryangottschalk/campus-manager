@@ -10,6 +10,8 @@ export class AllStudents extends React.Component {
       firstName: '',
       lastName: '',
       email: '',
+      imageUrl: '',
+      gpa: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,12 +24,17 @@ export class AllStudents extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.loadStudent(this.state);
+    this.setState({
+      firstName: '',
+      lastName: '',
+      email: '',
+    });
     //call thunk
   }
   render() {
     console.log('this.state', this.state);
     const { students } = this.props;
-    const { firstName, lastName, email } = this.state;
+    const { firstName, lastName, email, imageUrl, gpa } = this.state;
     return (
       <div>
         <h1>All Students</h1>
@@ -55,6 +62,21 @@ export class AllStudents extends React.Component {
             name="email"
             type="text"
             value={email}
+          />
+          <label htmlFor="imageUrl">Image URL:</label>
+          <input
+            onChange={this.handleChange}
+            name="imageUrl"
+            type="text"
+            value={imageUrl}
+          />
+
+          <label htmlFor="gpa">GPA:</label>
+          <input
+            onChange={this.handleChange}
+            name="gpa"
+            type="text"
+            value={gpa}
           />
           <button type="submit">Submit</button>
         </form>

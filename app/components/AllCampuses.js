@@ -24,6 +24,12 @@ export class AllCampuses extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.loadCampus(this.state);
+    this.setState({
+      name: '',
+      address: '',
+      imageUrl: '',
+      description: '',
+    });
   }
 
   render() {
@@ -66,7 +72,6 @@ export class AllCampuses extends React.Component {
             type="text"
             value={description}
           />
-
           <button type="submit">Submit</button>
         </form>
         <div className="campusesContainer">
