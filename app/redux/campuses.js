@@ -5,6 +5,7 @@ import axios from 'axios';
 const SET_CAMPUSES = 'SET_CAMPUSES';
 const ADD_CAMPUS = 'ADD_CAMPUS';
 const DELETE_CAMPUS = 'DELETE_CAMPUS';
+const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 
 // Action creators
 export const setCampuses = campuses => ({
@@ -20,6 +21,11 @@ export const addCampus = campus => ({
 export const deleteCampus = campusId => ({
   type: DELETE_CAMPUS,
   campusId,
+});
+
+export const updateCampus = updatedCampus => ({
+  type: UPDATE_CAMPUS,
+  updatedCampus,
 });
 
 //Thunk creators
@@ -38,6 +44,7 @@ export const postCampus = formSubmission => {
   return async dispatch => {
     try {
       const { data } = await axios.post('/api/campuses', formSubmission); // form submission becomes req.body
+      console.log('TCL: data', data);
       dispatch(addCampus(data));
     } catch (err) {
       console.log('ERROR adding campus', err);
@@ -56,6 +63,28 @@ export const removeCampus = campusId => {
   };
 };
 
+export const buildUpdateCampusThunk = (campusId, formSubmission) => {
+  return async dispatch => {
+    try {
+      console.log(
+        'TCL: buildUpdateCampusThunk -> formSubmission',
+        formSubmission
+      );
+
+      console.log('in the thunk');
+      console.log('TCL: buildUpdateCampusThunk -> campusId', campusId);
+      const { data } = await axios.put(
+        `/api/campuses/${campusId}/edit`,
+        formSubmission
+      ); //form submission becomes req.body
+      console.log('data from the thunk', data);
+      dispatch(updateCampus(data));
+    } catch (err) {
+      console.log('ERROR updating campus', err);
+    }
+  };
+};
+
 //Campuser subreducer
 const campusesReducer = (state = [], action) => {
   switch (action.type) {
@@ -63,6 +92,15 @@ const campusesReducer = (state = [], action) => {
       return action.campuses;
     case ADD_CAMPUS:
       return [...state, action.campus];
+    case UPDATE_CAMPUS:
+      return state.map(campus => {
+        if (campus.id === action.updatedCampus.id) {
+          //update the edited campus
+          return action.updatedCampus;
+        } else {
+          return campus;
+        }
+      });
     case DELETE_CAMPUS:
       return [
         ...state.filter(campus => {

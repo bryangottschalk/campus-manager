@@ -4,7 +4,6 @@ const Student = require('../db/student');
 
 router.get('/', async (req, res, next) => {
   try {
-    console.log('in the /students get req');
     const students = await Student.findAll();
     res.json(students);
   } catch (err) {
@@ -14,9 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const studentId = req.params.id;
-    const student = await Student.findByPk(studentId);
-    console.log('DATA', student);
+    const student = await Student.findByPk(req.params.id);
     if (!student) {
       res.status(404).send("couldn't find student");
     } else {
@@ -44,6 +41,27 @@ router.delete('/:id', async (req, res, next) => {
       },
     });
     res.sendStatus(200);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/:id', async (req, res, next) => {
+  console.log('in the route');
+  try {
+    const student = await Student.findByPk(req.body.id);
+    await student.setCampus(null);
+    res.sendStatus(200);
+  } catch (err) {
+    console.log('error unregistering student');
+  }
+});
+
+router.put('/:id/edit', async (req, res, next) => {
+  try {
+    const studentToUpdate = await Student.findByPk(req.params.id);
+    await studentToUpdate.update(req.body);
+    res.json(studentToUpdate);
   } catch (err) {
     next(err);
   }

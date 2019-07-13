@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { postCampus } from '../redux/campuses';
 
@@ -23,17 +22,6 @@ class AddCampusForm extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.loadCampus(this.state);
-    // try {
-    //   await this.props.loadCampus(this.state);
-    //   this.setState({
-    //     name: '',
-    //     address: '',
-    //     imageUrl: '',
-    //     description: '',
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
   }
 
   render() {

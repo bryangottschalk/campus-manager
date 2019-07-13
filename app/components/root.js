@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
-import SingleStudent from './SingleStudent';
-import SingleCampus from './SingleCampus';
+import SingleStudent from './StudentProfile';
+import SingleCampus from './CampusProfile';
+import UpdateCampusForm from './UpdateCampusForm';
+import UpdateStudentForm from './UpdateStudentForm';
 import { fetchCampuses } from '../redux/campuses';
 import { fetchStudents, fetchSingleStudent } from '../redux/students';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
@@ -36,8 +38,18 @@ class Root extends React.Component {
                 <Route exact path="/students/:id" component={SingleStudent} />
                 <Route
                   exact
+                  path="/students/:id/edit"
+                  component={UpdateStudentForm}
+                />
+                <Route
+                  exact
                   path="/campuses/addcampus"
                   component={AddCampusForm}
+                />
+                <Route
+                  exact
+                  path="/campuses/:id/edit"
+                  component={UpdateCampusForm}
                 />
                 <Route exact path="/campuses/:id" component={SingleCampus} />
               </Switch>

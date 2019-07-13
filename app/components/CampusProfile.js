@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { buildUnregisterStudentThunk } from '../redux/students';
 
 class SingleCampus extends React.Component {
   getCampus(campuses) {
@@ -35,11 +36,21 @@ class SingleCampus extends React.Component {
           {studentsAtCampus.length ? (
             studentsAtCampus.map(student => {
               return (
-                <li key={student.id}>
-                  <Link to={`/students/${student.id}`}>
-                    {`${student.firstName} ${student.lastName}`}
-                  </Link>
-                </li>
+                <div key={student.id}>
+                  <li>
+                    <Link to={`/students/${student.id}`}>
+                      {`${student.firstName} ${student.lastName}`}
+                    </Link>
+                  </li>
+
+                  <button
+                    className="delete"
+                    onClick={() => this.props.unregisterFromCampus(student)}
+                    type="button"
+                  >
+                    Remove From Campus
+                  </button>
+                </div>
               );
             })
           ) : (
@@ -58,4 +69,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(SingleCampus);
+const mapDispatchToProps = dispatch => ({
+  unregisterFromCampus: student =>
+    dispatch(buildUnregisterStudentThunk(student)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SingleCampus);
