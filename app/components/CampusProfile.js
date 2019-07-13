@@ -19,6 +19,8 @@ class SingleCampus extends React.Component {
   render() {
     const campus = this.getCampus(this.props.campuses);
     const studentsAtCampus = this.getStudentsAtCampus(this.props.students);
+    console.log(this.props.campuses);
+    console.log('campus', campus);
     return (
       <div>
         {this.props.campuses.length && campus && (

@@ -26,13 +26,10 @@ nav {
   padding: 10px 40px;
 }
 
-.navLinks {
-  display: flex;
-}
-
 .navLink {
   text-decoration: none;
 }
+
 .active {
   text-decoration: underline;
 }

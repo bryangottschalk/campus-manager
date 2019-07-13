@@ -7,6 +7,7 @@ import SingleStudent from './StudentProfile';
 import SingleCampus from './CampusProfile';
 import UpdateCampusForm from './UpdateCampusForm';
 import UpdateStudentForm from './UpdateStudentForm';
+import NotFound from './NotFound';
 import { fetchCampuses } from '../redux/campuses';
 import { fetchStudents, fetchSingleStudent } from '../redux/students';
 import {
@@ -30,17 +31,16 @@ class Root extends React.Component {
       <Router>
         <div>
           <nav>
-            <NavLink activeClassName="active" className="navLink" to="/">
+            <NavLink className="navLink" to="/" exact>
               Home
             </NavLink>
-
             <ul>
               <NavLink to="/campuses" className="navLink">
                 Campuses
               </NavLink>
               <NavLink to="/students" className="navLink">
                 Students
-              </NavLink>{' '}
+              </NavLink>
             </ul>
           </nav>
           <main>
@@ -66,6 +66,7 @@ class Root extends React.Component {
                   component={UpdateCampusForm}
                 />
                 <Route exact path="/campuses/:id" component={SingleCampus} />
+                <Route component={NotFound} />
               </Switch>
             </div>
           </main>
