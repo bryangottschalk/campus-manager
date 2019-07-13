@@ -91,12 +91,9 @@ export const buildUpdateStudentThunk = (studentId, formSubmission) => {
 };
 
 export const buildUnregisterStudentThunk = student => {
-  console.log('TCL: student', student);
   return async dispatch => {
     try {
-      console.log('in the thunk!');
-      const { data } = await axios.put(`/api/students/${student.id}`, student);
-      console.log('TCL: buildUnregisterStudentThunk -> data', data);
+      await axios.put(`/api/students/${student.id}`, student);
       dispatch(unregisterStudent(student));
     } catch (err) {
       console.log('ERROR unregistering student', err);
@@ -123,24 +120,21 @@ const studentsReducer = (state = [], action) => {
       return action.students;
     case ADD_STUDENT:
       return [...state, action.student];
+
     case UPDATE_STUDENT:
       return state.map(student => {
         if (student.id === action.updatedStudent.id) {
-          //update the edited student
           return action.updatedStudent;
         } else {
           return student;
         }
       });
     case UNREGISTER_STUDENT:
-      return state.map(student => {
-        if (student.campusId === action.student.id) {
-          //update the edited student
-          return action.student;
-        } else {
-          return student;
-        }
-      });
+      return state
+        .filter(student => {
+          return student.id !== action.student.id;
+        })
+        .concat({ ...action.student, campusId: null });
     case DELETE_STUDENT:
       return [
         ...state.filter(student => {
