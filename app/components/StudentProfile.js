@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-class SingleStudent extends React.Component {
+class StudentProfile extends React.Component {
   getStudent(students) {
     const studentId = Number(this.props.match.params.id);
     return students.find(student => {
@@ -15,12 +15,17 @@ class SingleStudent extends React.Component {
       return campus.id === studentCampusId;
     });
   }
+  studentExists(requestedId, numStudents) {
+    return requestedId <= numStudents;
+  }
+
   render() {
     const student = this.getStudent(this.props.students);
-
+    const numStudents = this.props.students.length;
+    const idRequested = Number(this.props.match.params.id);
     return (
       <div>
-        {this.props.students.length && (
+        {this.props.students.length && student && (
           <div>
             <h1>Student Profile</h1>
             <img src={student.imageUrl} />
@@ -42,6 +47,12 @@ class SingleStudent extends React.Component {
             <h3>GPA: {student.gpa}</h3>
           </div>
         )}
+        {!this.studentExists(idRequested, numStudents) && (
+          <p>
+            This student doesn't exist! See the list of students in the
+            navigation bar for links to existing ones.
+          </p>
+        )}
       </div>
     );
   }
@@ -54,4 +65,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(SingleStudent);
+export default connect(mapStateToProps)(StudentProfile);

@@ -11,6 +11,7 @@ export default function Student(props) {
       <Link to={`/students/${props.student.id}`}>
         <h2>{`${student.firstName} ${student.lastName}`}</h2>
       </Link>
+      <img src={student.imageUrl} />
       <Link
         to={`/students/${props.student.id}/edit`}
         component={UpdateStudentForm}
