@@ -66,13 +66,6 @@ export const removeCampus = campusId => {
 export const buildUpdateCampusThunk = (campusId, formSubmission) => {
   return async dispatch => {
     try {
-      console.log(
-        'TCL: buildUpdateCampusThunk -> formSubmission',
-        formSubmission
-      );
-
-      console.log('in the thunk');
-      console.log('TCL: buildUpdateCampusThunk -> campusId', campusId);
       const { data } = await axios.put(
         `/api/campuses/${campusId}/edit`,
         formSubmission

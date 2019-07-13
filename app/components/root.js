@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Homepage from './Homepage';
 import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
 import SingleStudent from './StudentProfile';
@@ -8,7 +9,13 @@ import UpdateCampusForm from './UpdateCampusForm';
 import UpdateStudentForm from './UpdateStudentForm';
 import { fetchCampuses } from '../redux/campuses';
 import { fetchStudents, fetchSingleStudent } from '../redux/students';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  NavLink,
+} from 'react-router-dom';
 import AddCampusForm from './AddCampusForm';
 
 class Root extends React.Component {
@@ -23,16 +30,23 @@ class Root extends React.Component {
       <Router>
         <div>
           <nav>
-            Welcome!
-            <Link to="/campuses">Campuses</Link>
-            <Link to="/students">Students</Link>
+            <NavLink activeClassName="active" className="navLink" to="/">
+              Home
+            </NavLink>
+
+            <ul>
+              <NavLink to="/campuses" className="navLink">
+                Campuses
+              </NavLink>
+              <NavLink to="/students" className="navLink">
+                Students
+              </NavLink>{' '}
+            </ul>
           </nav>
           <main>
-            <h1 className="homePageHeader">
-              Welcome to the Margaret Hamilton Academy of JavaScript!
-            </h1>
             <div>
               <Switch>
+                <Route exact path="/" component={Homepage} />
                 <Route exact path="/campuses" component={AllCampuses} />
                 <Route exact path="/students" component={AllStudents} />
                 <Route exact path="/students/:id" component={SingleStudent} />

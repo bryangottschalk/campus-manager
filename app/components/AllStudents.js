@@ -11,7 +11,7 @@ export class AllStudents extends React.Component {
       lastName: '',
       email: '',
       imageUrl: '',
-      gpa: undefined,
+      gpa: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,6 +29,8 @@ export class AllStudents extends React.Component {
       firstName: '',
       lastName: '',
       email: '',
+      imageUrl: '',
+      gpa: '',
     });
   }
 

@@ -20,7 +20,6 @@ class UpdateCampusForm extends React.Component {
     });
   }
   handleSubmit(evt) {
-    console.log('in handleSubmit');
     evt.preventDefault();
     const campusId = Number(this.props.match.params.id);
     this.props.updateCampus(campusId, this.state);
@@ -38,14 +37,6 @@ class UpdateCampusForm extends React.Component {
 
   render() {
     const { name, address, imageUrl, description } = this.state;
-    // const campusesOnGlobalState = this.props.campuses;
-    // const campusId = Number(this.props.match.params.id);
-    // const currentCampusData = campusesOnGlobalState[campusId - 1];
-    // console.log(
-    //   'TCL: UpdateCampusForm -> render -> currentCampusData',
-    //   currentCampusData
-    // );
-    // console.log('TCL: UpdateCampusForm -> render -> campusId ', campusId);
     return (
       <div>
         <h1>Update Campus Form</h1>

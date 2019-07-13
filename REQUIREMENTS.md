@@ -47,9 +47,9 @@ The requirements below are broken into separate **tiers**, which model the way w
 - ['x'] Express: GET /api/students responds with all students
 - ['x'] Sequelize (Campus): requires name and address
 - ['x'] Sequelize (Student): email must be a valid email
-- [ ] Navigation: navbar to navigate to home, campuses, students
-- [ ] Seed file: creates exactly one campus that has no students
-- [ ] Seed file: creates exactly one student that is not enrolled in a campus
+- [//unsure] Navigation: navbar to navigate to home, campuses, students
+- ['x'] Seed file: creates exactly one campus that has no students
+- ['x'] Seed file: creates exactly one student that is not enrolled in a campus
 
 Congrats! You have completed your first vertical slice! Make sure to `commit -m "Feature: Get All Campuses and Students"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 
@@ -182,6 +182,6 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
   - [ ] Create a filter on all-students view to only show students who are not registered to a campus
   - [ ] Create a filter on the all-campuses view to only show campuses that do not have any registered students
 - Seed
-  - [ ] Seed 100+ students and 100+ campuses
+  - ['x'] Seed 100+ students and 100+ campuses
 
 </details>

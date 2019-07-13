@@ -17,12 +17,24 @@ body {
 }
 
 nav {
-  align-items: center;
-  background-color: #333333;
-  color: #c0c0c0;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333333;
+  /* color: #c0c0c0; */
   height: 80px;
   padding: 10px 40px;
+}
+
+.navLinks {
+  display: flex;
+}
+
+.navLink {
+  text-decoration: none;
+}
+.active {
+  text-decoration: underline;
 }
 
 ul,
@@ -32,6 +44,7 @@ li {
 }
 
 main {
+  padding: 0 40px;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -45,16 +58,9 @@ nav a {
 
 /*Home Page*/
 
-.homePageHeader {
-  text-align: left;
-  padding-left: 40px;
-}
 /* Campuses */
 
 .campusesContainer {
-  /* width: 90vw; */
-  padding-left: 40px;
-  padding-right: 60px;
 }
 
 .campuses {
@@ -63,10 +69,6 @@ nav a {
 
 .campusLogos {
   width: 300px;
-}
-
-.heading {
-  padding-left: 40px;
 }
 
 /* Students */
@@ -78,6 +80,7 @@ nav a {
 
 .students {
   list-style: none;
+  padding: 10px;
 }
 
 /* Buttons */

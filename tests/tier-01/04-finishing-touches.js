@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-import enzyme, { mount } from 'enzyme';
+import enzyme, { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
@@ -20,6 +20,7 @@ enzyme.configure({ adapter });
 
 import { AllCampuses } from '../../app/components/AllCampuses';
 import { AllStudents } from '../../app/components/AllStudents';
+
 import Root from '../../app/components/root';
 
 // Sometimes, we want to wait for a short tinme for async events to finish.
@@ -52,7 +53,7 @@ describe('Tier One: Final Touches', () => {
       rrd.BrowserRouter.restore();
     });
 
-    xit('renders <AllCampuses /> at /campuses', () => {
+    it('renders <AllCampuses /> at /campuses', () => {
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={['/campuses']}>
@@ -64,7 +65,7 @@ describe('Tier One: Final Touches', () => {
       expect(wrapper.find(AllStudents)).to.have.length(0);
     });
 
-    xit('renders <AllStudents /> at /students', () => {
+    it('renders <AllStudents /> at /students', () => {
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={['/students']}>
@@ -76,8 +77,20 @@ describe('Tier One: Final Touches', () => {
       expect(wrapper.find(AllStudents)).to.have.length(1);
     });
 
-    xit('*** navbar to navigate to home, campuses, students', () => {
-      throw new Error('replace this error with your own test');
+    it('*** navbar to navigate to home, campuses, students', () => {
+      const wrapper = mount(
+        <Provider store={store}>
+          <MemoryRouter>
+            <Root />
+          </MemoryRouter>
+        </Provider>
+      );
+      expect(wrapper.find('Home'));
+      expect(wrapper.find('Campuses'));
+      expect(wrapper.find('Students'));
+      // expect(wrapper.text()).to.include('Campuses');
+      // expect(wrapper.text()).to.include('Students');
+      // throw new Error('replace this error with your own test');
     });
   });
 
@@ -94,12 +107,25 @@ describe('Tier One: Final Touches', () => {
       expect(students).to.have.lengthOf.at.least(4);
     });
 
-    xit('*** creates exactly one campus that has no students', async () => {
-      throw new Error('replace this error with your own test');
+    it('*** creates exactly one campus that has no students', async () => {
+      const campuses = await Campus.findAll();
+      let res;
+      for (let i = 0; i < campuses.length; i++) {
+        let campusStudentsArr = await campuses[i].getStudents();
+        if (campusStudentsArr.length === 0) {
+          res = [campuses[i]];
+        }
+      }
+      expect(res).to.have.lengthOf(1);
     });
 
-    xit('*** creates exactly one student that is not enrolled in a campus', async () => {
-      throw new Error('replace this error with your own test');
+    it('*** creates exactly one student that is not enrolled in a campus', async () => {
+      const students = await Student.findAll();
+      const unenrolledStudent = students.filter(student => {
+        return student.campusId === null;
+      });
+      console.log('TCL: unenrolledStudent', unenrolledStudent);
+      expect(unenrolledStudent).to.have.lengthOf(1);
     });
   });
 

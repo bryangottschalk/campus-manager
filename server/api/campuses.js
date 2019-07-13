@@ -11,23 +11,15 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// router.get('/:id/edit', async (req, res, next) => {
-//   try {
-//     console.log('in the update form get request');
-//     res.sendStatus(300);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
 router.put('/:id/edit', async (req, res, next) => {
   try {
-    console.log('in the campuses put request');
-    console.log('req.body', req.body);
-    console.log('id passed to .put route at /campuses:id/edit', req.params.id);
     const campusToUpdate = await Campus.findByPk(req.params.id);
+    if (!campusToUpdate) {
+      const err = new Error("couldn't find campus to update");
+      err.status = 404;
+      throw err;
+    }
     await campusToUpdate.update(req.body);
-    // res.sendStatus(200);
     res.json(campusToUpdate);
   } catch (err) {
     next(err);
@@ -38,7 +30,9 @@ router.get('/:id', async (req, res, next) => {
   try {
     const campus = await Campus.findByPk(req.params.id);
     if (!campus) {
-      res.status(404).send("couldn't find campus");
+      const err = new Error("couldn't find campus");
+      err.status = 404;
+      throw err;
     } else {
       res.status(200).json(campus);
     }

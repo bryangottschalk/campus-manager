@@ -4,92 +4,76 @@ const faker = require('faker');
 const Campus = require('./server/db/campus');
 const Student = require('./server/db/student');
 
-// commented these out to debug
-const campuses = [
-  {
-    name: 'Fullstack Academy',
-    address: '12',
-    imageUrl:
-      'https://cloud.fullstackacademy.com/fullstack-academy-logo-color-on-white.png?mtime=20160802141645',
-    description:
-      'Fullstack Academy is an immersive software engineering coding bootcamp located in New York City and Chicago. Students of the full-time flagship course learn full stack JavaScript over the course of a 13-week, on-campus program.',
-  },
-  {
-    name: 'Gracehopper | Fullstack Academy',
-    address: '34',
-    imageUrl:
-      'https://cdn-images-1.medium.com/max/1600/1*Z4KQVqvrFs2FQjJTcLvmNw.png',
-    description:
-      'The Grace Hopper Program at Fullstack Academy is an immersive software engineering course for women with no upfront tuition cost.',
-  },
-  {
-    name: 'Flatiron School',
-    address: '56',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/61/FS_wiki.png',
-    description:
-      'Flatiron School is an educational organization founded in 2012 by Adam Enbar and Avi Flombaum. The organization is based in New York City and teaches software engineering, computer programming, data science, and UX/UI design.',
-  },
-  {
-    name: 'Hack Reactor',
-    address: '78',
-    imageUrl:
-      'http://hrhqdir.s3.amazonaws.com/brand-guide/HackReactor_RGBLogo-Gray-Blue.png',
-    description:
-      'Hack Reactor is a software engineering Coding Bootcamp education program founded in San Francisco by Anthony Phillips, Shawn Drost, Marcus Phillips, and Douglas Calhoun in 2012.',
-  },
-];
+function generateFakeStudents() {
+  let students = [];
+  //push one student without a campusid for test spec
+  students.push({
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: `notenrolledatacampus@example.org`,
+    imageUrl: 'http://robohash.org/unenrolledstudent',
+    gpa: faker.random
+      .number({
+        min: 0,
+        max: 4,
+        precision: 0.1,
+      })
+      .toFixed(1),
+    //campusId 1 reserved to not have any students enrolled
+    campusId: null,
+  });
+  for (let i = 0; i < 999; i++) {
+    //so email address can be based on their name
+    let firstName = faker.name.firstName();
+    let lastName = faker.name.lastName();
+    students.push({
+      firstName: firstName,
+      lastName: lastName,
+      email: `${firstName}.${lastName}@example.org`,
+      imageUrl: faker.image.avatar(),
+      gpa: faker.random
+        .number({
+          min: 0,
+          max: 4,
+          precision: 0.1,
+        })
+        .toFixed(1),
+      campusId: faker.random.number({ min: 2, max: 100 }), //campusId 1 reserved to not have any students enrolled
+    });
+  }
+  return students;
+}
 
-const students = [
-  {
-    firstName: 'Bryan',
-    lastName: 'Gottschalk',
-    email: 'bryan@example.org',
-    imageUrl: 'https://robohash.org/Bryan',
-    gpa: '2.0',
-    campusId: 1,
-  },
-  {
-    firstName: 'Kayla',
-    lastName: 'Varacalli',
-    email: 'kayla@example.org',
-    imageUrl: 'https://robohash.org/Kayla',
-    gpa: '3.5',
-    campusId: 2,
-  },
-  {
-    firstName: 'Ali',
-    lastName: 'Gottschalk',
-    email: 'ali@example.org',
-    imageUrl: 'https://robohash.org/Alison',
-    gpa: '4.0',
-    campusId: 2,
-  },
-  {
-    firstName: 'Stephen',
-    lastName: 'Bott',
-    email: 'stephen@example.org',
-    imageUrl: 'https://robohash.org/Stephen',
-    gpa: '3.0',
-    campusId: 4,
-  },
-  {
-    firstName: 'Jake',
-    lastName: 'Adams',
-    email: 'jake@example.org',
-    imageUrl: 'https://robohash.org/Jake',
-    gpa: '3.3',
-  },
-];
+function generateFakeCampuses() {
+  let campuses = [];
+  //push one campus with no students for test spec
+  campuses.push({
+    name: faker.company.companyName(),
+    address: faker.address.streetAddress(),
+    imageUrl: faker.random.image(),
+    description: faker.lorem.paragraph(),
+  });
+
+  for (let i = 0; i < 99; i++) {
+    campuses.push({
+      name: faker.company.companyName(),
+      address: faker.address.streetAddress(),
+      imageUrl: faker.random.image(),
+      description: faker.lorem.paragraph(),
+    });
+  }
+  return campuses;
+}
+
+const campuses = generateFakeCampuses();
+const students = generateFakeStudents();
 
 const seed = async () => {
   try {
-    // await db.sync({ force: true });
     await db.sync({ force: true });
     await Promise.all(campuses.map(campus => Campus.create(campus))); // seed attempts
     await Promise.all(students.map(student => Student.create(student)));
     console.log('Database was successfully seeded!');
-    // db.close();
-    // seed your database here!
   } catch (err) {
     console.log(red(err));
   }
@@ -111,6 +95,3 @@ if (require.main === module) {
       db.close();
     });
 }
-
-// #### Seed Requirement
-// - [ ] Running the seed file creates campuses and students for demonstration purposes
