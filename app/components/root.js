@@ -26,7 +26,10 @@ class Root extends React.Component {
     this.props.loadCampuses();
     this.props.loadStudents();
   }
+
   render() {
+    // console.log('PROPS HERE', this.props);
+    // let numCampuses = this.props.campuses.length;
     return (
       <Router>
         <div>
@@ -76,12 +79,19 @@ class Root extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    campuses: state.campuses,
+    students: state.students,
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   loadCampuses: () => dispatch(fetchCampuses()),
   loadStudents: () => dispatch(fetchStudents()),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Root);

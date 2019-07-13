@@ -16,11 +16,14 @@ class SingleCampus extends React.Component {
       return student.campusId === campusId;
     });
   }
+  campusExists(requestedId, numCampuses) {
+    return requestedId <= numCampuses;
+  }
   render() {
     const campus = this.getCampus(this.props.campuses);
     const studentsAtCampus = this.getStudentsAtCampus(this.props.students);
-    console.log(this.props.campuses);
-    console.log('campus', campus);
+    const idRequested = Number(this.props.match.params.id);
+
     return (
       <div>
         {this.props.campuses.length && campus && (
@@ -35,28 +38,36 @@ class SingleCampus extends React.Component {
           </div>
         )}
         <ul>
-          {studentsAtCampus.length ? (
-            studentsAtCampus.map(student => {
-              return (
-                <div key={student.id}>
-                  <li>
-                    <Link to={`/students/${student.id}`}>
-                      {`${student.firstName} ${student.lastName}`}
-                    </Link>
-                  </li>
+          {studentsAtCampus.length
+            ? studentsAtCampus.map(student => {
+                return (
+                  <div key={student.id}>
+                    <li>
+                      <Link to={`/students/${student.id}`}>
+                        {`${student.firstName} ${student.lastName}`}
+                      </Link>
+                    </li>
 
-                  <button
-                    className="delete"
-                    onClick={() => this.props.unregisterFromCampus(student)}
-                    type="button"
-                  >
-                    Remove From Campus
-                  </button>
-                </div>
-              );
-            })
-          ) : (
-            <p>There are no students enrolled at this campus.</p>
+                    <button
+                      className="delete"
+                      onClick={() => this.props.unregisterFromCampus(student)}
+                      type="button"
+                    >
+                      Remove From Campus
+                    </button>
+                  </div>
+                );
+              })
+            : ''}
+          {!studentsAtCampus.length &&
+            this.campusExists(idRequested, this.props.campuses.length) && (
+              <p>There are no students enrolled at this campus.</p>
+            )}
+          {!this.campusExists(idRequested, this.props.campuses.length) && (
+            <p>
+              This campus doesn't exist! See the list of campuses in the
+              navigation bar for links to existing ones.
+            </p>
           )}
         </ul>
       </div>
