@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
 
 import * as rrd from 'react-router-dom';
-const { MemoryRouter, Link } = rrd;
+const { MemoryRouter } = rrd;
 
 import mockAxios from '../mock-axios';
 
@@ -124,7 +124,6 @@ describe('Tier One: Final Touches', () => {
       const unenrolledStudent = students.filter(student => {
         return student.campusId === null;
       });
-      console.log('TCL: unenrolledStudent', unenrolledStudent);
       expect(unenrolledStudent).to.have.lengthOf(1);
     });
   });

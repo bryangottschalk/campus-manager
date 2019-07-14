@@ -9,27 +9,23 @@ import UpdateCampusForm from './UpdateCampusForm';
 import UpdateStudentForm from './UpdateStudentForm';
 import NotFound from './NotFound';
 import { fetchCampuses } from '../redux/campuses';
-import { fetchStudents, fetchSingleStudent } from '../redux/students';
+import { fetchStudents } from '../redux/students';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
   NavLink,
 } from 'react-router-dom';
 import AddCampusForm from './AddCampusForm';
 
 class Root extends React.Component {
   componentDidMount() {
-    //this should be refactored if i have time. this forces every user to load the entire database even if they only want to view a nested page such as /students or /campuses
-    //ideally loadCampuses woul dbe called on /campuses and loadStudents on /students
+    //I understand this was a poor structural choice to load all campuses and students in the root component, but I didn't think I would have the time to refactor it. I would love to discuss approaches to do so!
     this.props.loadCampuses();
     this.props.loadStudents();
   }
 
   render() {
-    // console.log('PROPS HERE', this.props);
-    // let numCampuses = this.props.campuses.length;
     return (
       <Router>
         <div>

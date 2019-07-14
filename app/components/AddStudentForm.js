@@ -8,7 +8,7 @@ const initialState = {
   lastName: '',
   email: '',
   imageUrl: '',
-  gpa: undefined,
+  gpa: '',
 };
 
 class AddStudentForm extends React.Component {

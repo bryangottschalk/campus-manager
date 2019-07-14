@@ -11,7 +11,6 @@ const Campus = require('./campus');
 //
 // Puppy.belongsTo(Owner)
 
-// add these associations after db tests pass
 Campus.hasMany(Student);
 Student.belongsTo(Campus);
 

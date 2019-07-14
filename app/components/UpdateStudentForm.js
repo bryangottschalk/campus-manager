@@ -10,7 +10,7 @@ class UpdateStudentForm extends React.Component {
       lastName: '',
       email: '',
       imageUrl: '',
-      gpa: undefined,
+      gpa: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,7 +33,7 @@ class UpdateStudentForm extends React.Component {
       lastName: '',
       email: '',
       imageUrl: '',
-      gpa: undefined,
+      gpa: '',
     });
   }
 

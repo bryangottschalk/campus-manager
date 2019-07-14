@@ -71,7 +71,7 @@ const students = generateFakeStudents();
 const seed = async () => {
   try {
     await db.sync({ force: true });
-    await Promise.all(campuses.map(campus => Campus.create(campus))); // seed attempts
+    await Promise.all(campuses.map(campus => Campus.create(campus)));
     await Promise.all(students.map(student => Student.create(student)));
     console.log('Database was successfully seeded!');
   } catch (err) {

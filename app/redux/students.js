@@ -49,7 +49,6 @@ export const postStudent = formSubmission => {
   return async dispatch => {
     try {
       const { data } = await axios.post('/api/students', formSubmission);
-      console.log('data from postStudent post req', data);
       dispatch(addStudent(data));
     } catch (err) {
       console.log('ERROR adding student', err);
