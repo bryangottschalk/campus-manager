@@ -20,6 +20,10 @@ class UpdateStudentForm extends React.Component {
       [evt.target.name]: evt.target.value,
     });
   }
+  componentDidMount() {
+    const student = this.getStudent(this.props.students);
+    this.setState(student);
+  }
   handleSubmit(evt) {
     evt.preventDefault();
     const studentId = Number(this.props.match.params.id);
@@ -33,14 +37,22 @@ class UpdateStudentForm extends React.Component {
     });
   }
 
+  getStudent(students) {
+    const studentId = Number(this.props.match.params.id);
+    return students.find(student => {
+      return student.id === studentId;
+    });
+  }
+
   render() {
     const { firstName, lastName, email, imageUrl, gpa } = this.state;
 
     return (
       <div>
         <h1>Update Student Form</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form className="updateStudentForm" onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">First Name:</label>
+          {!firstName && <span className="warning"> (Field is required)</span>}
           <input
             onChange={this.handleChange}
             name="firstName"
@@ -49,6 +61,7 @@ class UpdateStudentForm extends React.Component {
           />
 
           <label htmlFor="lastName">Last Name:</label>
+          {!lastName && <span className="warning"> (Field is required)</span>}
           <input
             onChange={this.handleChange}
             name="lastName"
@@ -57,6 +70,7 @@ class UpdateStudentForm extends React.Component {
           />
 
           <label htmlFor="email">Email:</label>
+          {!email && <span className="warning"> (Field is required)</span>}
           <input
             onChange={this.handleChange}
             name="email"

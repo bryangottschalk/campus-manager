@@ -1,6 +1,5 @@
 import React from 'react';
 import { buildUpdateCampusThunk } from '../redux/campuses';
-import { buildGetSingleCampusThunk } from '../redux/campuses';
 import { connect } from 'react-redux';
 
 class UpdateCampusForm extends React.Component {
@@ -21,9 +20,9 @@ class UpdateCampusForm extends React.Component {
     });
   }
 
-  getCurrentCampusState() {
-    //TODO: call thunk
-    const campusId = Number(this.props.match.params.id);
+  componentDidMount() {
+    const campus = this.getCampus(this.props.campuses);
+    this.setState(campus);
   }
 
   handleSubmit(evt) {
@@ -38,14 +37,21 @@ class UpdateCampusForm extends React.Component {
     });
   }
 
+  getCampus(campuses) {
+    const campusId = Number(this.props.match.params.id);
+    return campuses.find(campus => {
+      return campus.id === campusId;
+    });
+  }
+
   render() {
-    console.log(this.props);
     const { name, address, imageUrl, description } = this.state;
     return (
       <div>
         <h1>Update Campus Form</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form className="updateCampusForm" onSubmit={this.handleSubmit}>
           <label htmlFor="name">Campus:</label>
+          {!name && <span className="warning"> (Field is required)</span>}
           <input
             onChange={this.handleChange}
             name="name"
@@ -54,6 +60,7 @@ class UpdateCampusForm extends React.Component {
           />
 
           <label htmlFor="address">Address:</label>
+          {!address && <span className="warning"> (Field is required)</span>}
           <input
             onChange={this.handleChange}
             name="address"
@@ -95,7 +102,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   updateCampus: (campusId, formSubmission) =>
     dispatch(buildUpdateCampusThunk(campusId, formSubmission)),
-  getCampus: campusId => dispatch(buildGetSingleCampusThunk(campusId)),
 });
 
 export default connect(

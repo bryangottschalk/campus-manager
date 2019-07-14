@@ -7,8 +7,6 @@ const DELETE_STUDENT = 'DELETE_STUDENT';
 const UPDATE_STUDENT = 'UPDATE_STUDENT';
 const UNREGISTER_STUDENT = 'UNREGISTER_STUDENT';
 
-// const GET_SINGLE_STUDENT = 'GET_SINGLE_STUDENT';
-
 // Action creators
 export const setStudents = students => ({
   type: SET_STUDENTS,
@@ -34,11 +32,6 @@ export const unregisterStudent = student => ({
   type: UNREGISTER_STUDENT,
   student,
 });
-//not currently using this action creator since all data is loaded in the root componenet. should refactor if time allows.
-// export const getSingleStudent = studentId => ({
-//   type: GET_SINGLE_STUDENT,
-//   studentId,
-// });
 
 //Thunk creators
 export const fetchStudents = () => {
@@ -55,7 +48,7 @@ export const fetchStudents = () => {
 export const postStudent = formSubmission => {
   return async dispatch => {
     try {
-      const { data } = await axios.post('/api/students', formSubmission); // form submission becomes req.body
+      const { data } = await axios.post('/api/students', formSubmission);
       console.log('data from postStudent post req', data);
       dispatch(addStudent(data));
     } catch (err) {
@@ -100,18 +93,6 @@ export const buildUnregisterStudentThunk = student => {
     }
   };
 };
-//not currently using this thunk anywhere since all data is loaded in the root component. would be useful to implement if time allows!
-// export const fetchSingleStudent = () => {
-//   return async dispatch => {
-//     try {
-//       const { data } = await axios.get(`/api/students/:${studentId}`);
-//       console.log('single student data', data);
-//       await dispatch(getSingleStudent(data));
-//     } catch (err) {
-//       console.log('ERROR fetching single student:', err);
-//     }
-//   };
-// };
 
 //Students subreducer
 const studentsReducer = (state = [], action) => {

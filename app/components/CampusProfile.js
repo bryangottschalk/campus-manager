@@ -45,7 +45,7 @@ class SingleCampus extends React.Component {
                     <li>
                       <img className="studentImages" src={student.imageUrl} />
                     </li>
-                    <li>
+                    <li className="studentProfileLinks">
                       <Link
                         className="studentProfileLinks"
                         to={`/students/${student.id}`}

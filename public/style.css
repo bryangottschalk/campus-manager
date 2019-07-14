@@ -67,6 +67,9 @@ p {
   font-size: 15px;
 }
 
+span {
+  color: #07689f;
+}
 hr {
   border-color: #ff7e67;
 }
@@ -157,6 +160,19 @@ button {
 
 /* Update Campus Form */
 
+.updateCampusForm {
+  width: 100%;
+  padding: 10px 0px 50px 0px;
+}
+
+.updateCampusForm button,
+.updateCampusForm input,
+.updateCampusForm textarea {
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+}
+
 /* Students */
 
 .addStudentFormContainer {
@@ -197,7 +213,29 @@ button {
 
 /* Student Profile */
 
+.studentProfilePic {
+  width: 200px;
+  /* max-width: 50vw; */
+  border-radius: 20px;
+}
+
+.studentProfileLinks {
+  text-align: center;
+}
 /* Update Student Form */
+
+.updateStudentForm {
+  width: 100%;
+  padding: 10px 0px 50px 0px;
+}
+
+.updateStudentForm button,
+.updateStudentForm input,
+.updateStudentForm textarea {
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+}
 
 /* Buttons */
 
@@ -227,4 +265,9 @@ form button:disabled {
   background-color: #ff7e67;
   border-radius: 5px;
   margin-bottom: 5px;
+}
+
+.generateRandomData {
+  height: 30px;
+  border-radius: 5px;
 }

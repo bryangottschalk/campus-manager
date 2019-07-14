@@ -28,7 +28,7 @@ class StudentProfile extends React.Component {
         {this.props.students.length && student && (
           <div>
             <h1>Student Profile</h1>
-            <img src={student.imageUrl} />
+            <img className="studentProfilePic" src={student.imageUrl} />
             <h2>
               Hello! My name is:
               {` ${student.firstName} ${student.lastName}.`}

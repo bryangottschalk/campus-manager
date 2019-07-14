@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { postCampus } from '../redux/campuses';
+import faker from 'faker';
 
 const initialState = {
   name: '',
   address: '',
   imageUrl: '',
   description: '',
-  errorMessage: '',
 };
 
 class AddCampusForm extends React.Component {
@@ -16,6 +16,7 @@ class AddCampusForm extends React.Component {
     this.state = initialState;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   handleChange(evt) {
     this.setState({
@@ -23,23 +24,38 @@ class AddCampusForm extends React.Component {
     });
   }
   handleSubmit(evt) {
-    //TODO --> Handle error
     evt.preventDefault();
     this.props.loadCampus(this.state);
     this.setState(initialState);
+  }
+
+  handleClick() {
+    this.setState({
+      name: faker.company.companyName(),
+      address: faker.address.streetAddress(),
+      imageUrl: faker.random.image(),
+      description: faker.lorem.sentence(),
+    });
   }
 
   render() {
     const { name, address, imageUrl, description } = this.state;
     return (
       <div>
-        <h2>Add Campus</h2>
+        <h2>Add Campus Form</h2>
+        <button
+          onClick={this.handleClick}
+          className="generateRandomData"
+          type="button"
+        >
+          Generate Random Data!
+        </button>
         <div className="addCampusFormContainer">
           <form className="addCampusForm" onSubmit={this.handleSubmit}>
             <ul>
               <li>
-                <label htmlFor="name">Campus:*</label>
-                {!name && <span className="warning">Field is required</span>}
+                <label htmlFor="name">Campus:</label>
+                {!name && <span className="warning"> (Field is required)</span>}
                 <input
                   onChange={this.handleChange}
                   name="name"
@@ -49,7 +65,10 @@ class AddCampusForm extends React.Component {
               </li>
 
               <li>
-                <label htmlFor="address">Address:*</label>
+                <label htmlFor="address">Address:</label>
+                {!address && (
+                  <span className="warning"> (Field is required)</span>
+                )}
                 <input
                   onChange={this.handleChange}
                   name="address"

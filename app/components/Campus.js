@@ -7,6 +7,7 @@ export default function Campus(props) {
   const campus = props.campus;
   const campusId = campus.id;
   const removeCampus = props.removeCampus;
+  console.log('campus', campus);
   return (
     <div className="campuses">
       <img className="campusLogos" src={campus.imageUrl} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { postStudent } from '../redux/students';
+import faker from 'faker';
 
 const initialState = {
   firstName: '',
@@ -16,6 +17,24 @@ class AddStudentForm extends React.Component {
     this.state = initialState;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    let firstName = faker.name.firstName();
+    let lastName = faker.name.lastName();
+    this.setState({
+      firstName: firstName,
+      lastName: lastName,
+      email: `${firstName}.${lastName}@example.org`,
+      imageUrl: faker.image.avatar(),
+      gpa: faker.random
+        .number({
+          min: 0,
+          max: 4,
+          precision: 0.1,
+        })
+        .toFixed(1),
+    });
   }
   handleChange(evt) {
     this.setState({
@@ -31,12 +50,22 @@ class AddStudentForm extends React.Component {
     const { firstName, lastName, email, imageUrl, gpa } = this.state;
     return (
       <div>
-        <h2>Add Student</h2>
+        <h2>Add Student Form</h2>
+        <button
+          onClick={this.handleClick}
+          className="generateRandomData"
+          type="button"
+        >
+          Generate Random Data!
+        </button>
         <div className="addStudentFormContainer">
           <form className="addStudentForm" onSubmit={this.handleSubmit}>
             <ul>
               <li>
-                <label htmlFor="firstName">First Name*</label>
+                <label htmlFor="firstName">First Name</label>
+                {!firstName && (
+                  <span className="warning"> (Field is required)</span>
+                )}
                 <input
                   onChange={this.handleChange}
                   name="firstName"
@@ -45,7 +74,10 @@ class AddStudentForm extends React.Component {
                 />
               </li>
               <li>
-                <label htmlFor="lastName">Last Name:*</label>
+                <label htmlFor="lastName">Last Name:</label>
+                {!lastName && (
+                  <span className="warning"> (Field is required)</span>
+                )}
                 <input
                   onChange={this.handleChange}
                   name="lastName"
@@ -54,7 +86,10 @@ class AddStudentForm extends React.Component {
                 />
               </li>
               <li>
-                <label htmlFor="email">Email:*</label>
+                <label htmlFor="email">Email:</label>
+                {!email && (
+                  <span className="warning"> (Field is required)</span>
+                )}
                 <input
                   onChange={this.handleChange}
                   name="email"
