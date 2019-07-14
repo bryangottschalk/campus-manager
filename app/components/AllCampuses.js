@@ -1,37 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Campus from './Campus';
-import { postCampus, removeCampus } from '../redux/campuses';
-import AddCampusForm, { addCampusForm } from './AddCampusForm';
+import { removeCampus } from '../redux/campuses';
+import AddCampusForm from './AddCampusForm';
 
 export class AllCampuses extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      address: '',
-      imageUrl: '',
-      description: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  constructor() {
+    super();
     this.removeCampus = this.removeCampus.bind(this);
-  }
-
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
-  }
-  handleSubmit(evt) {
-    evt.preventDefault();
-    this.props.loadCampus(this.state);
-    this.setState({
-      name: '',
-      address: '',
-      imageUrl: '',
-      description: '',
-    });
   }
 
   removeCampus(campusId) {
@@ -71,7 +47,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  loadCampus: formSubmission => dispatch(postCampus(formSubmission)),
   deleteCampus: campusId => dispatch(removeCampus(campusId)),
 });
 

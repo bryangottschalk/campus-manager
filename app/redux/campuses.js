@@ -43,7 +43,6 @@ export const postCampus = formSubmission => {
   return async dispatch => {
     try {
       const { data } = await axios.post('/api/campuses', formSubmission);
-      console.log('TCL: data', data);
       dispatch(addCampus(data));
     } catch (err) {
       console.log('ERROR adding campus', err);
