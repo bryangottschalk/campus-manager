@@ -22,7 +22,7 @@ function generateFakeStudents() {
     //campusId 1 reserved to not have any students enrolled
     campusId: null,
   });
-  for (let i = 0; i < 999; i++) {
+  for (let i = 0; i < 499; i++) {
     //so email address can be based on their name
     let firstName = faker.name.firstName();
     let lastName = faker.name.lastName();

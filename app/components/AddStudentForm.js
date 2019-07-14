@@ -2,16 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { postStudent } from '../redux/students';
 
+const initialState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  imageUrl: '',
+  gpa: undefined,
+};
+
 class AddStudentForm extends React.Component {
   constructor() {
     super();
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      imageUrl: '',
-      gpa: null,
-    };
+    this.state = initialState;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -23,13 +25,7 @@ class AddStudentForm extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.loadStudent(this.state);
-    this.setState({
-      firstName: '',
-      lastName: '',
-      email: '',
-      imageUrl: '',
-      gpa: '',
-    });
+    this.setState(initialState);
   }
   render() {
     const { firstName, lastName, email, imageUrl, gpa } = this.state;
@@ -40,7 +36,7 @@ class AddStudentForm extends React.Component {
           <form className="addStudentForm" onSubmit={this.handleSubmit}>
             <ul>
               <li>
-                <label htmlFor="firstName">First Name</label>
+                <label htmlFor="firstName">First Name*</label>
                 <input
                   onChange={this.handleChange}
                   name="firstName"
@@ -49,7 +45,7 @@ class AddStudentForm extends React.Component {
                 />
               </li>
               <li>
-                <label htmlFor="lastName">Last Name:</label>
+                <label htmlFor="lastName">Last Name:*</label>
                 <input
                   onChange={this.handleChange}
                   name="lastName"
@@ -58,7 +54,7 @@ class AddStudentForm extends React.Component {
                 />
               </li>
               <li>
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email">Email:*</label>
                 <input
                   onChange={this.handleChange}
                   name="email"
@@ -85,7 +81,12 @@ class AddStudentForm extends React.Component {
                 />
               </li>
               <li>
-                <button type="submit">Submit</button>
+                <button
+                  disabled={!firstName || !lastName || !email}
+                  type="submit"
+                >
+                  Submit
+                </button>
               </li>
             </ul>
           </form>

@@ -12,6 +12,11 @@ export const setCampuses = campuses => ({
   campuses,
 });
 
+export const getSingleCampus = campus => ({
+  type: GET_CAMPUS,
+  campus,
+});
+
 export const addCampus = campus => ({
   type: ADD_CAMPUS,
   campus,
@@ -35,6 +40,18 @@ export const fetchCampuses = () => {
       dispatch(setCampuses(data));
     } catch (err) {
       console.log('ERROR fetching campuses:', err);
+    }
+  };
+};
+
+//TODO
+export const buildGetSingleCampusThunk = campusId => {
+  return async dispatch => {
+    try {
+      const { data } = await axios.get(`/api/campuses/${campusId}`);
+      dispatch(getSingleCampus(campusId));
+    } catch (err) {
+      console.log('ERROR getting single campus', err);
     }
   };
 };

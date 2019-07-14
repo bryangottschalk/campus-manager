@@ -80,7 +80,9 @@ class UpdateStudentForm extends React.Component {
             value={gpa}
           />
 
-          <button type="submit">Submit</button>
+          <button disabled={!firstName || !lastName || !email} type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );

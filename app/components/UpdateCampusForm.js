@@ -1,5 +1,6 @@
 import React from 'react';
 import { buildUpdateCampusThunk } from '../redux/campuses';
+import { buildGetSingleCampusThunk } from '../redux/campuses';
 import { connect } from 'react-redux';
 
 class UpdateCampusForm extends React.Component {
@@ -19,6 +20,12 @@ class UpdateCampusForm extends React.Component {
       [evt.target.name]: evt.target.value,
     });
   }
+
+  getCurrentCampusState() {
+    //TODO: call thunk
+    const campusId = Number(this.props.match.params.id);
+  }
+
   handleSubmit(evt) {
     evt.preventDefault();
     const campusId = Number(this.props.match.params.id);
@@ -31,11 +38,8 @@ class UpdateCampusForm extends React.Component {
     });
   }
 
-  // updateCampus(campusId, formSubmission) {
-  //   this.props.updateCampus()
-  // }
-
   render() {
+    console.log(this.props);
     const { name, address, imageUrl, description } = this.state;
     return (
       <div>
@@ -73,7 +77,9 @@ class UpdateCampusForm extends React.Component {
             value={description}
           />
 
-          <button type="submit">Submit</button>
+          <button disabled={!name || !address} type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );
@@ -89,6 +95,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   updateCampus: (campusId, formSubmission) =>
     dispatch(buildUpdateCampusThunk(campusId, formSubmission)),
+  getCampus: campusId => dispatch(buildGetSingleCampusThunk(campusId)),
 });
 
 export default connect(

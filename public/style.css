@@ -77,7 +77,7 @@ label {
 }
 
 input {
-  padding: 10px;
+  margin: 10px 0px;
   border: #216583 1px solid;
   background-color: #fafafa;
 }
@@ -200,6 +200,14 @@ button {
 /* Update Student Form */
 
 /* Buttons */
+
+form button:hover {
+  background-color: #c1361d;
+}
+
+form button:disabled {
+  background-color: #ccc;
+}
 
 .edit {
   background-color: #07689f;

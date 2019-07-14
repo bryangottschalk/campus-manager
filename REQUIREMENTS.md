@@ -171,8 +171,8 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 
 - Finishing Touches
   - ['0'] If a user attempts to add a new student or campus without a required field, a helpful message should be displayed
-  - ['X'] If a user attempts to access a page that doesn't exist (ex. `/cafeteria`), a helpful "not found" message should be displayed
-  - ['X'] If a user attempts to view a student/campus that doesn't exist, a helpful message should be displayed
+  - ['x'] If a user attempts to access a page that doesn't exist (ex. `/cafeteria`), a helpful "not found" message should be displayed
+  - ['x'] If a user attempts to view a student/campus that doesn't exist, a helpful message should be displayed
   - [ ] Whenever a component needs to wait for data to load from the server, a "loading" message should be displayed until the data is available
   - [ ] Overall, the app is spectacularly styled and visually stunning
 - Ordering
