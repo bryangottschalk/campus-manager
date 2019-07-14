@@ -7,20 +7,16 @@ export default function Student(props) {
   const removeStudent = props.removeStudent;
 
   return (
-    <li className="students">
-      <Link to={`/students/${props.student.id}`}>
-        <h2>{`${student.firstName} ${student.lastName}`}</h2>
-      </Link>
+    <div className="students">
       <img src={student.imageUrl} />
+      <Link to={`/students/${props.student.id}`}>
+        <h3>{`${student.firstName} ${student.lastName}`}</h3>
+      </Link>
       <Link
         to={`/students/${props.student.id}/edit`}
         component={UpdateStudentForm}
       >
-        <button
-          className="edit"
-          // onClick={() => editStudent(studentId)}
-          type="button"
-        >
+        <button className="edit" type="button">
           edit
         </button>
       </Link>
@@ -31,6 +27,6 @@ export default function Student(props) {
       >
         delete
       </button>
-    </li>
+    </div>
   );
 }

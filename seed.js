@@ -51,7 +51,7 @@ function generateFakeCampuses() {
     name: faker.company.companyName(),
     address: faker.address.streetAddress(),
     imageUrl: faker.random.image(),
-    description: faker.lorem.paragraph(),
+    description: faker.lorem.sentence(),
   });
 
   for (let i = 0; i < 99; i++) {

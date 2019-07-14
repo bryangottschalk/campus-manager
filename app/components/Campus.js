@@ -8,18 +8,13 @@ export default function Campus(props) {
   const campusId = campus.id;
   const removeCampus = props.removeCampus;
   return (
-    <li className="campuses">
-      <hr />
+    <div className="campuses">
       <img className="campusLogos" src={campus.imageUrl} />
       <Link
         to={`/campuses/${props.campus.id}/edit`}
         component={UpdateCampusForm}
       >
-        <button
-          className="edit"
-          // onClick={() => editStudent(studentId)}
-          type="button"
-        >
+        <button className="edit" type="button">
           edit
         </button>
       </Link>
@@ -31,10 +26,10 @@ export default function Campus(props) {
         delete
       </button>
       <Link to={`/campuses/${props.campus.id}`}>
-        <h1>{campus.name}</h1>
+        <h3>{campus.name}</h3>
       </Link>
       <p>Address: {campus.address}</p>
       <p>{campus.description}</p>
-    </li>
+    </div>
   );
 }

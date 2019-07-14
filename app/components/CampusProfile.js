@@ -29,7 +29,7 @@ class SingleCampus extends React.Component {
         {this.props.campuses.length && campus && (
           <div>
             <h1>Campus Profile</h1>
-            <img className="campusLogos" src={campus.imageUrl} />
+            <img className="campusImg" src={campus.imageUrl} />
             <h2>Campus Name: {campus.name}</h2>
             <h3>Address: {campus.address}</h3>
             <p>{campus.description}</p>
@@ -41,16 +41,21 @@ class SingleCampus extends React.Component {
           {studentsAtCampus.length
             ? studentsAtCampus.map(student => {
                 return (
-                  <div key={student.id}>
+                  <div className="studentsOnCampusContainer" key={student.id}>
                     <li>
-                      <Link to={`/students/${student.id}`}>
+                      <img className="studentImages" src={student.imageUrl} />
+                    </li>
+                    <li>
+                      <Link
+                        className="studentProfileLinks"
+                        to={`/students/${student.id}`}
+                      >
                         {`${student.firstName} ${student.lastName}`}
                       </Link>
-                      <img src={student.imageUrl} />
                     </li>
 
                     <button
-                      className="delete"
+                      className="unregister"
                       onClick={() => this.props.unregisterFromCampus(student)}
                       type="button"
                     >
