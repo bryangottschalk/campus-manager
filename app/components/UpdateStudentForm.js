@@ -15,14 +15,14 @@ class UpdateStudentForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  componentDidMount() {
+    const student = this.getStudent(this.props.students);
+    this.setState(student);
+  }
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
-  }
-  componentDidMount() {
-    const student = this.getStudent(this.props.students);
-    this.setState(student);
   }
   handleSubmit(evt) {
     evt.preventDefault();
@@ -36,7 +36,6 @@ class UpdateStudentForm extends React.Component {
       gpa: '',
     });
   }
-
   getStudent(students) {
     const studentId = Number(this.props.match.params.id);
     return students.find(student => {

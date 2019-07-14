@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const Student = require('../db/student');
-//routes specific to students
 
 router.get('/', async (req, res, next) => {
   try {

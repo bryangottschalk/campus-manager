@@ -109,6 +109,9 @@ button {
   border-radius: 50%;
 }
 
+.bodyText {
+  font-size: 20px;
+}
 /* All Campuses */
 
 .campusesContainer {

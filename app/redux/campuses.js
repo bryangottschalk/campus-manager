@@ -1,12 +1,10 @@
 import axios from 'axios';
 
-// Action types
 const SET_CAMPUSES = 'SET_CAMPUSES';
 const ADD_CAMPUS = 'ADD_CAMPUS';
 const DELETE_CAMPUS = 'DELETE_CAMPUS';
 const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 
-// Action creators
 export const setCampuses = campuses => ({
   type: SET_CAMPUSES,
   campuses,
@@ -27,7 +25,6 @@ export const updateCampus = updatedCampus => ({
   updatedCampus,
 });
 
-//Thunk creators
 export const fetchCampuses = () => {
   return async dispatch => {
     try {
@@ -84,7 +81,6 @@ const campusesReducer = (state = [], action) => {
     case UPDATE_CAMPUS:
       return state.map(campus => {
         if (campus.id === action.updatedCampus.id) {
-          //update the edited campus
           return action.updatedCampus;
         } else {
           return campus;

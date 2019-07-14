@@ -1,13 +1,11 @@
 import axios from 'axios';
 
-// Action types
 const SET_STUDENTS = 'SET_STUDENTS';
 const ADD_STUDENT = 'ADD_STUDENT';
 const DELETE_STUDENT = 'DELETE_STUDENT';
 const UPDATE_STUDENT = 'UPDATE_STUDENT';
 const UNREGISTER_STUDENT = 'UNREGISTER_STUDENT';
 
-// Action creators
 export const setStudents = students => ({
   type: SET_STUDENTS,
   students,
@@ -33,7 +31,6 @@ export const unregisterStudent = student => ({
   student,
 });
 
-//Thunk creators
 export const fetchStudents = () => {
   return async dispatch => {
     try {
@@ -93,7 +90,6 @@ export const buildUnregisterStudentThunk = student => {
   };
 };
 
-//Students subreducer
 const studentsReducer = (state = [], action) => {
   switch (action.type) {
     case SET_STUDENTS:

@@ -1,4 +1,3 @@
-//use later when refactoring
 import React from 'react';
 import { Link } from 'react-router-dom';
 import UpdateCampusForm from './UpdateCampusForm';
