@@ -22,52 +22,70 @@ class AddCampusForm extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.loadCampus(this.state);
+    this.setState({
+      name: '',
+      address: '',
+      imageUrl: '',
+      description: '',
+    });
   }
 
   render() {
     const { name, address, imageUrl, description } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Campus:</label>
-        <input
-          onChange={this.handleChange}
-          name="name"
-          type="text"
-          value={name}
-        />
+      <div>
+        <h2>Add Campus</h2>
+        <div className="addCampusFormContainer">
+          <form className="addCampusForm" onSubmit={this.handleSubmit}>
+            <ul>
+              <li>
+                <label htmlFor="name">Campus:</label>
+                <input
+                  onChange={this.handleChange}
+                  name="name"
+                  type="text"
+                  value={name}
+                />
+              </li>
 
-        <label htmlFor="address">Address:</label>
-        <input
-          onChange={this.handleChange}
-          name="address"
-          type="text"
-          value={address}
-        />
-
-        <label htmlFor="imageUrl">Image URL:</label>
-        <input
-          onChange={this.handleChange}
-          name="imageUrl"
-          type="text"
-          value={imageUrl}
-        />
-
-        <label htmlFor="description">Description:</label>
-        <input
-          onChange={this.handleChange}
-          name="description"
-          type="text"
-          value={description}
-        />
-
-        <button type="submit">Submit</button>
-      </form>
+              <li>
+                <label htmlFor="address">Address:</label>
+                <input
+                  onChange={this.handleChange}
+                  name="address"
+                  type="text"
+                  value={address}
+                />
+              </li>
+              <li>
+                <label htmlFor="imageUrl">Image URL:</label>
+                <input
+                  onChange={this.handleChange}
+                  name="imageUrl"
+                  type="text"
+                  value={imageUrl}
+                />
+              </li>
+              <label htmlFor="description">Description:</label>
+              <input
+                onChange={this.handleChange}
+                name="description"
+                type="text"
+                value={description}
+              />
+              <li>
+                <button type="submit">Submit</button>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  loadCampus: () => dispatch(postCampus()),
+  loadCampus: formSubmission => dispatch(postCampus(formSubmission)),
 });
 
 export default connect(

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Campus from './Campus';
 import { postCampus, removeCampus } from '../redux/campuses';
+import AddCampusForm, { addCampusForm } from './AddCampusForm';
 
 export class AllCampuses extends React.Component {
   constructor(props) {
@@ -40,70 +41,23 @@ export class AllCampuses extends React.Component {
   render() {
     const { campuses } = this.props;
 
-    const { name, address, imageUrl, description } = this.state;
     return (
       <div>
         <h1>All Campuses</h1>
         <hr />
-        <h2>Add Campus</h2>
-        <div className="addCampusFormContainer">
-          <form className="addCampusForm" onSubmit={this.handleSubmit}>
-            <ul>
-              <li>
-                <label htmlFor="name">Campus:</label>
-                <input
-                  onChange={this.handleChange}
-                  name="name"
-                  type="text"
-                  value={name}
-                />
-              </li>
-
-              <li>
-                <label htmlFor="address">Address:</label>
-                <input
-                  onChange={this.handleChange}
-                  name="address"
-                  type="text"
-                  value={address}
-                />
-              </li>
-              <li>
-                <label htmlFor="imageUrl">Image URL:</label>
-                <input
-                  onChange={this.handleChange}
-                  name="imageUrl"
-                  type="text"
-                  value={imageUrl}
-                />
-              </li>
-              <label htmlFor="description">Description:</label>
-              <input
-                onChange={this.handleChange}
-                name="description"
-                type="text"
-                value={description}
+        <AddCampusForm />
+        <div className="campusesContainer">
+          {!campuses.length ? (
+            <p>There are no campuses registered in the database. :(</p>
+          ) : (
+            campuses.map(campus => (
+              <Campus
+                campus={campus}
+                key={campus.id}
+                removeCampus={this.removeCampus}
               />
-              <li>
-                <button type="submit">Submit</button>
-              </li>
-            </ul>
-          </form>
-        </div>
-        <div>
-          <div className="campusesContainer">
-            {!campuses.length ? (
-              <p>There are no campuses registered in the database. :(</p>
-            ) : (
-              campuses.map(campus => (
-                <Campus
-                  campus={campus}
-                  key={campus.id}
-                  removeCampus={this.removeCampus}
-                />
-              ))
-            )}
-          </div>
+            ))
+          )}
         </div>
       </div>
     );

@@ -155,7 +155,7 @@ button {
   border-radius: 5px;
 }
 
-/* Student Profile */
+/* Update Campus Form */
 
 /* Students */
 
@@ -195,7 +195,12 @@ button {
   max-height: 100%;
 }
 
+/* Student Profile */
+
+/* Update Student Form */
+
 /* Buttons */
+
 .edit {
   background-color: #07689f;
   color: #fafafa;

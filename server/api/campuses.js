@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const Campus = require('../db/campus');
-// routes specific to campuses
-// don't forget to add error handling here!
+
 router.get('/', async (req, res, next) => {
   try {
     const campuses = await Campus.findAll();

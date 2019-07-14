@@ -1,4 +1,3 @@
-// campuses action creators, sub-reducer
 import axios from 'axios';
 
 // Action types
@@ -43,7 +42,7 @@ export const fetchCampuses = () => {
 export const postCampus = formSubmission => {
   return async dispatch => {
     try {
-      const { data } = await axios.post('/api/campuses', formSubmission); // form submission becomes req.body
+      const { data } = await axios.post('/api/campuses', formSubmission);
       console.log('TCL: data', data);
       dispatch(addCampus(data));
     } catch (err) {
@@ -69,8 +68,7 @@ export const buildUpdateCampusThunk = (campusId, formSubmission) => {
       const { data } = await axios.put(
         `/api/campuses/${campusId}/edit`,
         formSubmission
-      ); //form submission becomes req.body
-      console.log('data from the thunk', data);
+      );
       dispatch(updateCampus(data));
     } catch (err) {
       console.log('ERROR updating campus', err);
@@ -78,7 +76,6 @@ export const buildUpdateCampusThunk = (campusId, formSubmission) => {
   };
 };
 
-//Campuser subreducer
 const campusesReducer = (state = [], action) => {
   switch (action.type) {
     case SET_CAMPUSES:
