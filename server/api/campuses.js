@@ -12,13 +12,14 @@ router.get('/', async (req, res, next) => {
 
 router.put('/:id/edit', async (req, res, next) => {
   try {
+    const { name, address, imageUrl, description } = req.body;
     const campusToUpdate = await Campus.findByPk(req.params.id);
     if (!campusToUpdate) {
       const err = new Error("couldn't find campus to update");
       err.status = 404;
       throw err;
     }
-    await campusToUpdate.update(req.body);
+    await campusToUpdate.update({ name, address, imageUrl, description });
     res.json(campusToUpdate);
   } catch (err) {
     next(err);
@@ -42,7 +43,13 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newCampus = await Campus.create(req.body);
+    const { name, address, imageUrl, description } = req.body;
+    const newCampus = await Campus.create({
+      name,
+      address,
+      imageUrl,
+      description,
+    });
     res.json(newCampus);
   } catch (err) {
     next(err);

@@ -9,7 +9,7 @@ function NotFound() {
       <p>
         <strong>Campus profiles</strong> are accessible under "campuses" on the
         navbar and
-        <strong> student profiles</strong> are accessible under "students".
+        <strong>student profiles</strong> are accessible under "students".
       </p>
       <p>Here's a cute kitten for your troubles!</p>
       <img src="http://placekitten.com/500/500" />
