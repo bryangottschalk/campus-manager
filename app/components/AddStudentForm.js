@@ -15,11 +15,8 @@ class AddStudentForm extends React.Component {
   constructor() {
     super();
     this.state = initialState;
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
-  handleClick() {
+  handleClick = () => {
     let firstName = faker.name.firstName();
     let lastName = faker.name.lastName();
     this.setState({
@@ -35,17 +32,17 @@ class AddStudentForm extends React.Component {
         })
         .toFixed(1),
     });
-  }
-  handleChange(evt) {
+  };
+  handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
-  }
-  handleSubmit(evt) {
+  };
+  handleSubmit = evt => {
     evt.preventDefault();
     this.props.loadStudent(this.state);
     this.setState(initialState);
-  }
+  };
   render() {
     const { firstName, lastName, email, imageUrl, gpa } = this.state;
     return (

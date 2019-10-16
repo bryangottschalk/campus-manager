@@ -5,14 +5,9 @@ import { removeStudent } from '../redux/students';
 import AddStudentForm from './AddStudentForm';
 
 export class AllStudents extends React.Component {
-  constructor() {
-    super();
-    this.removeStudent = this.removeStudent.bind(this);
-  }
-
-  removeStudent(studentId) {
+  removeStudent = studentId => {
     this.props.deleteStudent(studentId);
-  }
+  };
 
   render() {
     const { students } = this.props;

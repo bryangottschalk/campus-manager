@@ -12,19 +12,17 @@ class UpdateStudentForm extends React.Component {
       imageUrl: '',
       gpa: '',
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
     const student = this.getStudent(this.props.students);
     this.setState(student);
   }
-  handleChange(evt) {
+  handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
-  }
-  handleSubmit(evt) {
+  };
+  handleSubmit = evt => {
     evt.preventDefault();
     const studentId = Number(this.props.match.params.id);
     this.props.updateStudent(studentId, this.state);
@@ -35,7 +33,7 @@ class UpdateStudentForm extends React.Component {
       imageUrl: '',
       gpa: '',
     });
-  }
+  };
   getStudent(students) {
     const studentId = Number(this.props.match.params.id);
     return students.find(student => {

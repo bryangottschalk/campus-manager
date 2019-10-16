@@ -14,29 +14,26 @@ class AddCampusForm extends React.Component {
   constructor() {
     super();
     this.state = initialState;
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
-  handleChange(evt) {
+  handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
-  }
-  handleSubmit(evt) {
+  };
+  handleSubmit = evt => {
     evt.preventDefault();
     this.props.loadCampus(this.state);
     this.setState(initialState);
-  }
+  };
 
-  handleClick() {
+  handleClick = () => {
     this.setState({
       name: faker.company.companyName(),
       address: faker.address.streetAddress(),
       imageUrl: faker.random.image(),
       description: faker.lorem.sentence(),
     });
-  }
+  };
 
   render() {
     const { name, address, imageUrl, description } = this.state;
