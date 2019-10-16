@@ -13,7 +13,14 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newStudent = await Student.create(req.body);
+    const { firstName, lastName, email, imageUrl, gpa } = req.body;
+    const newStudent = await Student.create({
+      firstName,
+      lastName,
+      email,
+      imageUrl,
+      gpa,
+    });
     res.json(newStudent);
   } catch (err) {
     next(err);
@@ -67,6 +74,7 @@ router.put('/:id', async (req, res, next) => {
 });
 
 router.put('/:id/edit', async (req, res, next) => {
+  const { firstName, lastName, email, imageUrl, gpa, id, campusId } = req.body;
   try {
     const studentToUpdate = await Student.findByPk(req.params.id);
     if (!studentToUpdate) {
@@ -74,7 +82,15 @@ router.put('/:id/edit', async (req, res, next) => {
       err.status = 404;
       throw err;
     } else {
-      await studentToUpdate.update(req.body);
+      await studentToUpdate.update({
+        firstName,
+        lastName,
+        email,
+        imageUrl,
+        gpa,
+        id,
+        campusId,
+      });
       res.json(studentToUpdate);
     }
   } catch (err) {
