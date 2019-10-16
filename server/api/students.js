@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Student = require('../db/student');
+const Campus = require('../db/campus');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -21,7 +22,9 @@ router.post('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const student = await Student.findByPk(req.params.id);
+    const student = await Student.findByPk(req.params.id, {
+      include: [{ model: Campus }],
+    });
     if (!student) {
       const err = new Error("couldn't find student");
       err.status = 404;

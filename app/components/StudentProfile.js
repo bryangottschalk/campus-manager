@@ -1,31 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchSelectedStudentThunk } from '../redux/selectedStudent';
 
 class StudentProfile extends React.Component {
-  getStudent(students) {
+  componentDidMount() {
     const studentId = Number(this.props.match.params.id);
-    return students.find(student => {
-      return student.id === studentId;
-    });
-  }
-  getCampus(studentCampusId) {
-    const campuses = this.props.campuses;
-    return campuses.find(campus => {
-      return campus.id === studentCampusId;
-    });
-  }
-  studentExists(requestedId, numStudents) {
-    return requestedId <= numStudents;
+    this.props.selectedStudent(studentId);
   }
 
   render() {
-    const student = this.getStudent(this.props.students);
-    const numStudents = this.props.students.length;
-    const idRequested = Number(this.props.match.params.id);
+    const student = this.props.currentStudent;
     return (
       <div>
-        {this.props.students.length && student && (
+        {student.firstName ? (
           <div>
             <h1>Student Profile</h1>
             <img className="studentProfilePic" src={student.imageUrl} />
@@ -36,8 +24,8 @@ class StudentProfile extends React.Component {
             <h3>
               Campus:{' '}
               {student.campusId ? (
-                <Link to={`/campuses/${this.getCampus(student.campusId).id}`}>
-                  {`${this.getCampus(student.campusId).name}`}
+                <Link to={`/campuses/${student.campusId}`}>
+                  {`${student.campus.name}`}
                 </Link>
               ) : (
                 ` ${student.firstName} is not enrolled in school right now.`
@@ -46,12 +34,8 @@ class StudentProfile extends React.Component {
             <h3>Email: {student.email}</h3>
             <h3>GPA: {student.gpa}</h3>
           </div>
-        )}
-        {!this.studentExists(idRequested, numStudents) && (
-          <p>
-            This student doesn't exist! See the list of students in the
-            navigation bar for links to existing ones.
-          </p>
+        ) : (
+          <div>Student doesn't exist</div>
         )}
       </div>
     );
@@ -62,7 +46,14 @@ const mapStateToProps = state => {
   return {
     campuses: state.campuses,
     students: state.students,
+    currentStudent: state.selectedStudent,
   };
 };
+const mapDispatchToProps = dispatch => ({
+  selectedStudent: id => dispatch(fetchSelectedStudentThunk(id)),
+});
 
-export default connect(mapStateToProps)(StudentProfile);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StudentProfile);
