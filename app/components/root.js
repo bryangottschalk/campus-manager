@@ -9,7 +9,7 @@ import UpdateCampusForm from './UpdateCampusForm';
 import UpdateStudentForm from './UpdateStudentForm';
 import NotFound from './NotFound';
 import { fetchCampuses } from '../redux/campuses';
-import { fetchStudents } from '../redux/students';
+import { fetchStudentsThunk } from '../redux/students';
 import {
   BrowserRouter as Router,
   Route,
@@ -83,7 +83,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   loadCampuses: () => dispatch(fetchCampuses()),
-  loadStudents: () => dispatch(fetchStudents()),
+  loadStudents: () => dispatch(fetchStudentsThunk()),
 });
 
 export default connect(

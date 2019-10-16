@@ -36,7 +36,7 @@ export const fetchCampusesThunk = () => {
   };
 };
 
-export const postCampus = formSubmission => {
+export const postCampusThunk = formSubmission => {
   return async dispatch => {
     try {
       const { data } = await axios.post('/api/campuses', formSubmission);
@@ -47,7 +47,7 @@ export const postCampus = formSubmission => {
   };
 };
 
-export const removeCampus = campusId => {
+export const removeCampusThunk = campusId => {
   return async dispatch => {
     try {
       await axios.delete(`/api/campuses/${campusId}`);

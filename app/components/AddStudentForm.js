@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postStudent } from '../redux/students';
+import { postStudentThunk } from '../redux/students';
 import faker from 'faker';
 
 const initialState = {
@@ -129,7 +129,7 @@ class AddStudentForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loadStudent: formSubmission => dispatch(postStudent(formSubmission)),
+  loadStudent: formSubmission => dispatch(postStudentThunk(formSubmission)),
 });
 
 export default connect(

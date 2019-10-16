@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Campus from './Campus';
-import { fetchCampusesThunk, removeCampus } from '../redux/campuses';
+import { fetchCampusesThunk, removeCampusThunk } from '../redux/campuses';
 
 import AddCampusForm from './AddCampusForm';
 
@@ -49,7 +49,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   loadCampuses: () => dispatch(fetchCampusesThunk()),
-  deleteCampus: campusId => dispatch(removeCampus(campusId)),
+  deleteCampus: campusId => dispatch(removeCampusThunk(campusId)),
 });
 
 export default connect(

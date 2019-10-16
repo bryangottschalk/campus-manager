@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Student from './Student';
-import { removeStudent } from '../redux/students';
+import { removeStudentThunk } from '../redux/students';
 import AddStudentForm from './AddStudentForm';
 
 export class AllStudents extends React.Component {
@@ -41,7 +41,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  deleteStudent: studentId => dispatch(removeStudent(studentId)),
+  deleteStudent: studentId => dispatch(removeStudentThunk(studentId)),
 });
 
 export default connect(

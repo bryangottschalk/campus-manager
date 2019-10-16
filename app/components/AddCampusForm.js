@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postCampus } from '../redux/campuses';
+import { postCampusThunk } from '../redux/campuses';
 import faker from 'faker';
 
 const initialState = {
@@ -103,7 +103,7 @@ class AddCampusForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loadCampus: formSubmission => dispatch(postCampus(formSubmission)),
+  loadCampus: formSubmission => dispatch(postCampusThunk(formSubmission)),
 });
 
 export default connect(
