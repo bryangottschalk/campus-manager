@@ -1,0 +1,276 @@
+* {
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  background-color: #a2d5f2;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #07689f;
+  height: 80px;
+  padding: 0px 40px;
+}
+
+.navLink {
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main {
+  margin: 0 40px;
+}
+
+nav a {
+  color: #fafafa;
+  padding: 20px;
+}
+
+a {
+  color: #07689f;
+}
+h1 {
+  color: #216583;
+}
+
+h2 {
+  color: #07689f;
+}
+
+h3 {
+  color: #07689f;
+}
+p {
+  color: #07689f;
+  font-size: 15px;
+}
+
+span {
+  color: #07689f;
+}
+hr {
+  border-color: #ff7e67;
+}
+
+label {
+  color: #07689f;
+  padding-bottom: 5px;
+}
+
+input {
+  margin: 10px 0px;
+  border: #216583 1px solid;
+  background-color: #fafafa;
+}
+
+button {
+  color: #fafafa;
+  background-color: #ff7e67;
+}
+
+/* Home Page */
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.wrapper p {
+  margin-top: 50px;
+  max-width: 80%;
+  min-width: 50%;
+  margin-left: 20px;
+}
+
+.wrapper img {
+  border-radius: 50%;
+}
+
+.bodyText {
+  font-size: 20px;
+}
+/* All Campuses */
+
+.campusesContainer {
+  width: 100%;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
+  grid-row-gap: 350px;
+  grid-column-gap: 50px;
+}
+
+.campuses > img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
+}
+
+.addCampusForm {
+  width: 50vw;
+  padding: 10px 0px 50px 0px;
+}
+
+.addCampusForm button,
+.addCampusForm input,
+.addCampusForm textarea {
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Campus Profile */
+
+.campusImg {
+  max-width: 50vw;
+  border-radius: 20px;
+}
+
+.studentsOnCampusContainer {
+  display: inline-block;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.studentImages {
+  border-radius: 5px;
+}
+
+/* Update Campus Form */
+
+.updateCampusForm {
+  width: 100%;
+  padding: 10px 0px 50px 0px;
+}
+
+.updateCampusForm button,
+.updateCampusForm input,
+.updateCampusForm textarea {
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Students */
+
+.addStudentFormContainer {
+  display: grid;
+  max-width: 100vw;
+  width: 100%;
+}
+
+.addStudentForm {
+  width: 50vw;
+  padding: 10px 0px 50px 0px;
+}
+
+.addStudentForm button,
+.addStudentForm input,
+.addStudentForm textarea {
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.studentsContainer {
+  width: 100%;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 244.5px;
+  grid-row-gap: 100px;
+  grid-column-gap: 50px;
+}
+
+.students > img {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 200px;
+  max-height: 100%;
+}
+
+/* Student Profile */
+
+.studentProfilePic {
+  width: 200px;
+  /* max-width: 50vw; */
+  border-radius: 20px;
+}
+
+.studentProfileLinks {
+  text-align: center;
+}
+/* Update Student Form */
+
+.updateStudentForm {
+  width: 100%;
+  padding: 10px 0px 50px 0px;
+}
+
+.updateStudentForm button,
+.updateStudentForm input,
+.updateStudentForm textarea {
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Buttons */
+
+form button:hover {
+  background-color: #c1361d;
+}
+
+form button:disabled {
+  background-color: #ccc;
+}
+
+.edit {
+  background-color: #07689f;
+  color: #fafafa;
+  border-radius: 5px;
+}
+
+.delete {
+  color: #fafafa;
+  background-color: #ff7e67;
+  border-radius: 5px;
+}
+
+.unregister {
+  width: 128px;
+  color: #fafafa;
+  background-color: #ff7e67;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.generateRandomData {
+  height: 30px;
+  border-radius: 5px;
+}
