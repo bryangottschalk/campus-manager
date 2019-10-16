@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Student from './Student';
-import { removeStudentThunk } from '../redux/students';
+import { fetchStudentsThunk, removeStudentThunk } from '../redux/students';
 import AddStudentForm from './AddStudentForm';
 
 export class AllStudents extends React.Component {
+  componentDidMount() {
+    this.props.loadStudents();
+  }
   removeStudent = studentId => {
     this.props.deleteStudent(studentId);
   };
@@ -18,7 +21,7 @@ export class AllStudents extends React.Component {
         <AddStudentForm />
         <div className="studentsContainer">
           {!students.length ? (
-            <p>There are no students registered in the database. :(</p>
+            <p>Loading students...</p>
           ) : (
             students.map(student => (
               <Student
@@ -41,6 +44,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  loadStudents: () => dispatch(fetchStudentsThunk()),
   deleteStudent: studentId => dispatch(removeStudentThunk(studentId)),
 });
 

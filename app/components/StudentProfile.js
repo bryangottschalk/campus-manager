@@ -13,7 +13,7 @@ class StudentProfile extends React.Component {
     const student = this.props.currentStudent;
     return (
       <div>
-        {student.firstName ? (
+        {student ? (
           <div>
             <h1>Student Profile</h1>
             <img className="studentProfilePic" src={student.imageUrl} />
@@ -44,8 +44,6 @@ class StudentProfile extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    campuses: state.campuses,
-    students: state.students,
     currentStudent: state.selectedStudent,
   };
 };

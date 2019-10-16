@@ -1,5 +1,5 @@
 import React from 'react';
-import { buildUpdateCampusThunk } from '../redux/campuses';
+import { updateCampusThunk } from '../redux/campuses';
 import { connect } from 'react-redux';
 
 class UpdateCampusForm extends React.Component {
@@ -99,7 +99,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   updateCampus: (campusId, formSubmission) =>
-    dispatch(buildUpdateCampusThunk(campusId, formSubmission)),
+    dispatch(updateCampusThunk(campusId, formSubmission)),
 });
 
 export default connect(

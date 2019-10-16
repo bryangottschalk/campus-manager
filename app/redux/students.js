@@ -64,7 +64,7 @@ export const removeStudentThunk = studentId => {
   };
 };
 
-export const buildUpdateStudentThunk = (studentId, formSubmission) => {
+export const updateStudentThunk = (studentId, formSubmission) => {
   return async dispatch => {
     try {
       const { data } = await axios.put(
@@ -78,7 +78,7 @@ export const buildUpdateStudentThunk = (studentId, formSubmission) => {
   };
 };
 
-export const buildUnregisterStudentThunk = student => {
+export const unregisterStudentThunk = student => {
   return async dispatch => {
     try {
       await axios.put(`/api/students/${student.id}`, student);

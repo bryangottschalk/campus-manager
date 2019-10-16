@@ -58,7 +58,7 @@ export const removeCampusThunk = campusId => {
   };
 };
 
-export const buildUpdateCampusThunk = (campusId, formSubmission) => {
+export const updateCampusThunk = (campusId, formSubmission) => {
   return async dispatch => {
     try {
       const { data } = await axios.put(

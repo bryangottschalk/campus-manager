@@ -1,5 +1,5 @@
 import React from 'react';
-import { buildUpdateStudentThunk } from '../redux/students';
+import { updateStudentThunk } from '../redux/students';
 import { connect } from 'react-redux';
 
 class UpdateStudentForm extends React.Component {
@@ -108,7 +108,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   updateStudent: (studentId, formSubmission) =>
-    dispatch(buildUpdateStudentThunk(studentId, formSubmission)),
+    dispatch(updateStudentThunk(studentId, formSubmission)),
 });
 
 export default connect(
