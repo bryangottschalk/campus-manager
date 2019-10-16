@@ -25,7 +25,7 @@ export const updateCampus = updatedCampus => ({
   updatedCampus,
 });
 
-export const fetchCampuses = () => {
+export const fetchCampusesThunk = () => {
   return async dispatch => {
     try {
       const { data } = await axios.get('/api/campuses');

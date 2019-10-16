@@ -21,7 +21,6 @@ import AddCampusForm from './AddCampusForm';
 class Root extends React.Component {
   componentDidMount() {
     //I understand this was a poor structural choice to load all campuses and students in the root component, but I didn't think I would have the time to refactor it. I would love to discuss approaches to do so!
-    this.props.loadCampuses();
     this.props.loadStudents();
   }
 

@@ -71,7 +71,6 @@ export const buildUpdateStudentThunk = (studentId, formSubmission) => {
         `/api/students/${studentId}/edit`,
         formSubmission
       );
-      console.log('data from the thunk', data);
       dispatch(updateStudent(data));
     } catch (err) {
       console.log('ERROR updating student', err);
