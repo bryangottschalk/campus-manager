@@ -15,3 +15,8 @@ npm-debug.log
 *.swp
 
 .DS_Store
+
+# Fullstack Files
+RUBRIC.md
+REQUIREMENTS.cd
+REQUIREMENTS-EXTD.cd
