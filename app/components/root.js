@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Homepage from './Homepage';
 import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
@@ -8,8 +7,6 @@ import SingleCampus from './CampusProfile';
 import UpdateCampusForm from './UpdateCampusForm';
 import UpdateStudentForm from './UpdateStudentForm';
 import NotFound from './NotFound';
-import { fetchCampuses } from '../redux/campuses';
-import { fetchStudents } from '../redux/students';
 import {
   BrowserRouter as Router,
   Route,
@@ -19,12 +16,6 @@ import {
 import AddCampusForm from './AddCampusForm';
 
 class Root extends React.Component {
-  componentDidMount() {
-    //I understand this was a poor structural choice to load all campuses and students in the root component, but I didn't think I would have the time to refactor it. I would love to discuss approaches to do so!
-    this.props.loadCampuses();
-    this.props.loadStudents();
-  }
-
   render() {
     return (
       <Router>
@@ -75,19 +66,4 @@ class Root extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    campuses: state.campuses,
-    students: state.students,
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  loadCampuses: () => dispatch(fetchCampuses()),
-  loadStudents: () => dispatch(fetchStudents()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Root);
+export default Root;

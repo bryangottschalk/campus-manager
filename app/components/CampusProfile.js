@@ -1,32 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { buildUnregisterStudentThunk } from '../redux/students';
+import { unregisterStudentThunk } from '../redux/students';
+import {
+  fetchSelectedCampusThunk,
+  unregisterStudentFromSelectedCampusThunk,
+} from '../redux/selectedCampus';
 
 class SingleCampus extends React.Component {
-  getCampus(campuses) {
+  componentDidMount() {
     const campusId = Number(this.props.match.params.id);
-    return campuses.find(campus => {
-      return campus.id === campusId;
-    });
+    this.props.selectedCampus(campusId);
   }
-  getStudentsAtCampus(students) {
-    const campusId = Number(this.props.match.params.id);
-    return students.filter(student => {
-      return student.campusId === campusId;
-    });
-  }
-  campusExists(requestedId, numCampuses) {
-    return requestedId <= numCampuses;
-  }
+
   render() {
-    const campus = this.getCampus(this.props.campuses);
-    const studentsAtCampus = this.getStudentsAtCampus(this.props.students);
-    const idRequested = Number(this.props.match.params.id);
+    const campus = this.props.currentCampus;
 
     return (
       <div>
-        {this.props.campuses.length && campus && (
+        {campus ? (
           <div>
             <h1>Campus Profile</h1>
             <img className="campusImg" src={campus.imageUrl} />
@@ -35,47 +27,44 @@ class SingleCampus extends React.Component {
             <p>{campus.description}</p>
             <hr />
             <h2>Students on Campus:</h2>
-          </div>
-        )}
-        <ul>
-          {studentsAtCampus.length
-            ? studentsAtCampus.map(student => {
-                return (
-                  <div className="studentsOnCampusContainer" key={student.id}>
-                    <li>
-                      <img className="studentImages" src={student.imageUrl} />
-                    </li>
-                    <li className="studentProfileLinks">
-                      <Link
-                        className="studentProfileLinks"
-                        to={`/students/${student.id}`}
-                      >
-                        {`${student.firstName} ${student.lastName}`}
-                      </Link>
-                    </li>
+            <ul>
+              {campus.students ? (
+                campus.students.map(student => {
+                  return (
+                    <div className="studentsOnCampusContainer" key={student.id}>
+                      <li>
+                        <img className="studentImages" src={student.imageUrl} />
+                      </li>
+                      <li className="studentProfileLinks">
+                        <Link
+                          className="studentProfileLinks"
+                          to={`/students/${student.id}`}
+                        >
+                          {`${student.firstName} ${student.lastName}`}
+                        </Link>
+                      </li>
 
-                    <button
-                      className="unregister"
-                      onClick={() => this.props.unregisterFromCampus(student)}
-                      type="button"
-                    >
-                      Remove From Campus
-                    </button>
-                  </div>
-                );
-              })
-            : ''}
-          {!studentsAtCampus.length &&
-            this.campusExists(idRequested, this.props.campuses.length) && (
-              <p>There are no students enrolled at this campus.</p>
-            )}
-          {!this.campusExists(idRequested, this.props.campuses.length) && (
-            <p>
-              This campus doesn't exist! See the list of campuses in the
-              navigation bar for links to existing ones.
-            </p>
-          )}
-        </ul>
+                      <button
+                        className="unregister"
+                        onClick={() => {
+                          this.props.unregisterFromCampus(student);
+                          this.props.unregiserFromSelectedCampus(student);
+                        }}
+                        type="button"
+                      >
+                        Remove From Campus
+                      </button>
+                    </div>
+                  );
+                })
+              ) : (
+                <div>No students are currently enrolled at this campus.</div>
+              )}
+            </ul>
+          </div>
+        ) : (
+          <div>Campus doesn't exist</div>
+        )}
       </div>
     );
   }
@@ -83,14 +72,15 @@ class SingleCampus extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    campuses: state.campuses,
-    students: state.students,
+    currentCampus: state.selectedCampus,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  unregisterFromCampus: student =>
-    dispatch(buildUnregisterStudentThunk(student)),
+  unregisterFromCampus: student => dispatch(unregisterStudentThunk(student)),
+  unregiserFromSelectedCampus: student =>
+    dispatch(unregisterStudentFromSelectedCampusThunk(student)),
+  selectedCampus: id => dispatch(fetchSelectedCampusThunk(id)),
 });
 
 export default connect(

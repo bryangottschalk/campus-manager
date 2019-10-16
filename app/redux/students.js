@@ -31,7 +31,7 @@ export const unregisterStudent = student => ({
   student,
 });
 
-export const fetchStudents = () => {
+export const fetchStudentsThunk = () => {
   return async dispatch => {
     try {
       const { data } = await axios.get('/api/students');
@@ -42,7 +42,7 @@ export const fetchStudents = () => {
   };
 };
 
-export const postStudent = formSubmission => {
+export const postStudentThunk = formSubmission => {
   return async dispatch => {
     try {
       const { data } = await axios.post('/api/students', formSubmission);
@@ -53,7 +53,7 @@ export const postStudent = formSubmission => {
   };
 };
 
-export const removeStudent = studentId => {
+export const removeStudentThunk = studentId => {
   return async dispatch => {
     try {
       await axios.delete(`/api/students/${studentId}`);
@@ -64,14 +64,13 @@ export const removeStudent = studentId => {
   };
 };
 
-export const buildUpdateStudentThunk = (studentId, formSubmission) => {
+export const updateStudentThunk = (studentId, formSubmission) => {
   return async dispatch => {
     try {
       const { data } = await axios.put(
         `/api/students/${studentId}/edit`,
         formSubmission
       );
-      console.log('data from the thunk', data);
       dispatch(updateStudent(data));
     } catch (err) {
       console.log('ERROR updating student', err);
@@ -79,7 +78,7 @@ export const buildUpdateStudentThunk = (studentId, formSubmission) => {
   };
 };
 
-export const buildUnregisterStudentThunk = student => {
+export const unregisterStudentThunk = student => {
   return async dispatch => {
     try {
       await axios.put(`/api/students/${student.id}`, student);
