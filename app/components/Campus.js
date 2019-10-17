@@ -9,10 +9,7 @@ export default function Campus(props) {
   return (
     <div className="campuses">
       <img className="campusLogos" src={campus.imageUrl} />
-      <Link
-        to={`/campuses/${props.campus.id}/edit`}
-        component={UpdateCampusForm}
-      >
+      <Link to={`/campuses/${props.campus.id}/edit`}>
         <button className="edit" type="button">
           edit
         </button>
