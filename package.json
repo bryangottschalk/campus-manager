@@ -60,7 +60,6 @@
     "sinon": "^6.1.5",
     "style-loader": "^0.21.0",
     "supertest": "^3.1.0",
-    "volleyball": "^1.5.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   }
